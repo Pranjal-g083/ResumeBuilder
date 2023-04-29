@@ -1,0 +1,20 @@
+{% extends 'form.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block form_content %}
+    <div class="card-body p-sm-5 row d-flex justify-content-center">
+        <div class="col-md-3">
+            <img src="{% static 'assets/img/singer.png' %}" >
+        </div>
+        <h2 class="text-center mb-4">Add Your Extra-Curricular Activities here</h2>
+        <div id="ECForm">
+        </div>
+        <button class="btn btn-light" id="add" type="button"
+                hx-get="{% url 'extra_curricular_form' %}" hx-swap="beforeend" hx-target="#ECForm">
+            <img height="25px" width="25px" src="{% static 'assets/img/add.svg' %}"></img> Add Extra-Curricular
+        </button>
+        <div>
+            <a class="btn btn-primary d-block w-100 mt-3" role="button" href="{% url 'achievements' %}">Save and Continue</a>
+        </div>
+    </div>
+{% endblock form_content %}

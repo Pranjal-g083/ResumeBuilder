@@ -1,0 +1,6 @@
+{%load crispy_forms_tags%}
+<form method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    <div><a class="btn btn-primary d-block w-100 mt-2 mb-4" role="button" href="#">Save</a></div>
+</form>

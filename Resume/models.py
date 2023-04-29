@@ -125,7 +125,7 @@ class Certifications(models.Model):
         return self.Certificate
 
 class ExtraCurricular(models.Model):
-    Activity=models.TextField(blank=False, null=False)
+    Activity=models.CharField(max_length=100, blank=False, null=False)
     Description=models.TextField(blank=False, null=False)
     Resume=models.ForeignKey(Resume,on_delete=models.CASCADE, default=1)
     def __str__(self):

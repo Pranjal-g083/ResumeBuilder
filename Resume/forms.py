@@ -89,6 +89,9 @@ class KeyCoursesCategoryForm(forms.ModelForm):
         fields = (
             'Name',
         )
+        labels={
+            'Name':'Category Name'
+        }
         
 class KeyCoursesForm(forms.ModelForm):
     class Meta:
@@ -96,6 +99,9 @@ class KeyCoursesForm(forms.ModelForm):
         fields = (
             'Name',
         )
+        labels={
+            'Name':'Course Name'
+        }
         
 class Porform(forms.ModelForm):
     class Meta:
