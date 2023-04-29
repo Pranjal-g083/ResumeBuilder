@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags%}
+{% load static %}
+{% block head_title %}Template{% endblock head_title %}
+{% block content %}
+<section class="py-5">
+    <div class="container py-5">
+        <div class="row mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <h2 class="fw-bold">Please Select A Design</h2>
+                <p class="text-muted"></p>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 mx-auto" style="max-width: 900px;">
+            <div class="col mb-4" style="padding-left: 20px;padding-right: 20px;">
+                <div><img class="rounded img-fluid shadow w-100 fit-cover" src="{% static 'assets/img/1.jpg'%}" style="height: 250px;" alt="Image">
+                    <div class="py-4"><a href="{% url 'personal_info' %}">
+                            <h4 class="fw-bold">Name</h4>
+                        </a>
+                        <p class="text-muted">Date - DD/MM/YYYY<br>Any more details...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4" style="padding-left: 20px;padding-right: 20px;">
+                <div><img class="rounded img-fluid shadow w-100 fit-cover" src="{% static 'assets/img/1.jpg'%}" style="height: 250px;" alt="Image">
+                    <div class="py-4"><a href="{% url 'personal_info' %}">
+                            <h4 class="fw-bold">Name</h4>
+                        </a>
+                        <p class="text-muted">Date - DD/MM/YYYY<br>Any more details...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4" style="padding-left: 20px;padding-right: 20px;">
+                <div><img class="rounded img-fluid shadow w-100 fit-cover" src="{% static 'assets/img/1.jpg'%}" style="height: 250px;" alt="Image">
+                    <div class="py-4"><a href="{% url 'personal_info' %}">
+                            <h4 class="fw-bold">Name</h4>
+                        </a>
+                        <p class="text-muted">Date - DD/MM/YYYY<br>Any more details...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4" style="padding-left: 20px;padding-right: 20px;">
+                <div><img class="rounded img-fluid shadow w-100 fit-cover" src="{% static 'assets/img/1.jpg'%}" style="height: 250px;" alt="Image">
+                    <div class="py-4"><a href="{% url 'personal_info' %}">
+                            <h4 class="fw-bold">Name</h4>
+                        </a>
+                        <p class="text-muted">Date - DD/MM/YYYY<br>Any more details...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'form.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block form_content %}
+    <div class="card-body p-sm-5 row d-flex justify-content-center">
+        <div class="col-md-3">
+            <img src="{% static 'assets/img/skills.png' %}" >
+        </div>
+        <h2 class="text-center mb-4">Please Describe your skills here</h2>
+        <div id="SkillCategoryForm">
+        </div>
+        <button class="btn btn-light" id="add" type="button"
+                hx-get="{% url 'skill_category_form' %}" hx-swap="beforeend" hx-target="#SkillCategoryForm">
+            <img height="25px" width="25px" src="{% static 'assets/img/add.svg' %}"></img> Add Skill Category
+        </button>
+        <div>
+            <a class="btn btn-primary d-block w-100 mt-3" role="button" href="{% url 'experience' %}">Save and Continue</a>
+        </div>
+    </div>
+{% endblock form_content %}

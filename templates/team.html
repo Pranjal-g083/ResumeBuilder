@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block content %}
+    <section class="py-5">
+        <div class="container py-5" style="margin-top: -48px;margin-bottom: -48px;">
+            <div class="row mb-4 mb-lg-5">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <h2 class="fw-bold">Panchayat</h2>
+                    <p class="text-muted">No matter the project, our team can handle it.&nbsp;</p>
+                </div>
+            </div>
+            <div class="row row-cols-2 row-cols-md-3 mx-auto" style="max-width: 700px;">
+                <div class="col mb-4">
+                    <div class="text-center"><img class="img-thumbnail mb-3 fit-cover" width="150" height="150" src="{%static 'assets/img/akshat.jpg'%}" alt="Akshat">
+                        <h5 class="fw-bold mb-0"><strong>Akshat Mittal</strong></h5>
+                        <p class="text-muted mb-2">The Delete Master</p>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="text-center"><img class="img-thumbnail mb-3 fit-cover" width="150" height="150" alt="Dhananjai">
+                        <h5 class="fw-bold mb-0">Dhananjai</h5>
+                        <p class="text-muted mb-2">Piro Gamer</p>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="text-center"><img class="img-thumbnail mb-3 fit-cover" width="160" height="167" alt="Pranjal" src="{%static 'assets/img/pranjal.jpg'%}">
+                        <h5 class="fw-bold mb-0">Pranjal Baranwal</h5>
+                        <p class="text-muted mb-2">Piro Comder</p>
+                    </div>
+                </div>
+                <div class="col mb-4" style="margin-left: 90px;margin-right: 25px;">
+                    <div class="text-center"><img class="img-thumbnail mb-3 fit-cover" width="150" height="150" alt="Satvik">
+                        <h5 class="fw-bold mb-0"><strong>Satvik Tiwari</strong></h5>
+                        <p class="text-muted mb-2">Toppr</p>
+                    </div>
+                </div>
+                <div class="col mb-4" style="margin-right: 90px;margin-left: 25px;">
+                    <div class="text-center"><img class="img-thumbnail mb-3 fit-cover" width="150" height="150" alt="Ujwal">
+                        <h5 class="fw-bold mb-0"><strong>Ujwal Kumar</strong></h5>
+                        <p class="text-muted mb-2">Mutthal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
