@@ -18,6 +18,8 @@ def validate_summary_length(value):
 
 class Resume(models.Model):
     author=models.ForeignKey(User,on_delete=models.CASCADE)
+    name=models.CharField(max_length=100, blank=False, null=False)
+    type=models.IntegerChoices('type', '1 2 3 4')
     def __str__(self):
         return self.author.username
 
@@ -33,7 +35,7 @@ class Personal_Info(models.Model):
     Address=models.CharField(max_length=100, blank=False, null=False, default='Delhi')
     Resume=models.ForeignKey(Resume,on_delete=models.CASCADE, default=1)
     def __str__(self):
-        return self.name
+        return self.Name
     
 class Education(models.Model):
     # Degree is an enum of B.Tech M.tech M.Sc P.hd M.S.R. Senior Secondary Secondary
@@ -46,7 +48,7 @@ class Education(models.Model):
     End=models.DateField(blank=False, null=False)
     Resume=models.ForeignKey(Resume,on_delete=models.CASCADE, default=1)
     def __str__(self):
-        return self.name
+        return self.Field
     
 class Experience(models.Model):
     Company=models.CharField(max_length=100, blank=False, null=False)
@@ -56,7 +58,7 @@ class Experience(models.Model):
     Description=models.TextField(blank=False, null=False)
     Resume=models.ForeignKey(Resume,on_delete=models.CASCADE, default=1)
     def __str__(self):
-        return self.name
+        return self.Position
     
 class Project(models.Model):
     Name=models.CharField(max_length=100, blank=False, null=False)
@@ -67,31 +69,31 @@ class Project(models.Model):
     link=models.URLField(blank=True, null=True)
     Resume=models.ForeignKey(Resume,on_delete=models.CASCADE, default=1)
     def __str__(self):
-        return self.name
+        return self.Name
     
 class SkillCategory(models.Model):
     Name=models.CharField(max_length=100, blank=False, null=False)
     Resume=models.ForeignKey(Resume,on_delete=models.CASCADE, default=1)
     def __str__(self):
-        return self.name
+        return self.Name
     
 class skill(models.Model):
     Name=models.CharField(max_length=30, blank=False, null=False)
     Category=models.ForeignKey(SkillCategory,on_delete=models.CASCADE)
     def __str__(self):
-        return self.name
+        return self.Name
 
 class KeyCoursesCategory(models.Model):
     Name=models.CharField(max_length=100, blank=False, null=False)
     Resume=models.ForeignKey(Resume,on_delete=models.CASCADE, default=1)
     def __str__(self):
-        return self.name
+        return self.Name
     
 class KeyCourses(models.Model):
     Name=models.CharField(max_length=100, blank=False, null=False)
     Category=models.ForeignKey(KeyCoursesCategory,on_delete=models.CASCADE)
     def __str__(self):
-        return self.name
+        return self.Name
     
 class PORs(models.Model):
     Club=models.CharField(max_length=100, blank=False, null=False)

@@ -1,7 +1,16 @@
 from .models import *
 from django import forms
 
-
+class ResumeForm(forms.ModelForm):
+    class Meta:
+        model=Resume
+        fields=(
+            'name',
+        )
+        labels={
+            'name':'Resume Name'
+        }
+    
 class PersonalInfoForm(forms.ModelForm):
     class Meta:
         model = Personal_Info
@@ -15,7 +24,13 @@ class PersonalInfoForm(forms.ModelForm):
             'Linkedin',
             'Address',
         )
-        
+        widgets = {
+            'Profile': forms.ClearableFileInput(attrs={'multiple': True}),
+        }
+        labels = {
+            'Profile': 'Profile Picture',
+        }
+
 class EducationForm(forms.ModelForm):
     class Meta:
         model = Education

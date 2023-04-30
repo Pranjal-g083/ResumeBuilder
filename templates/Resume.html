@@ -1,0 +1,11 @@
+{% extends 'form.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block form_content %}
+<h2 class="text-center mb-4">Name this resume</h2>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="text-center">
+        <button class="btn btn-primary mt-3" type="submit" href="{% url 'personal_info' id%}">Save</button>
+    </div>
+{% endblock%}

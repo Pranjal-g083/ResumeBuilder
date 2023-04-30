@@ -29,15 +29,10 @@ class SkillAdmin(admin.TabularInline):
 class SkillCategoryAdmin(admin.ModelAdmin):
     inlines=[SkillAdmin]
     
-admin.site.register(SkillCategory, SkillCategoryAdmin)
-
-class KeyCoursesAdmin(admin.TabularInline):
-    model=KeyCourses
-    
-class KeyCoursesCategoryAdmin(admin.ModelAdmin):
-    inlines=[KeyCoursesAdmin]
-    
-admin.site.register(KeyCoursesCategory, KeyCoursesCategoryAdmin)
+admin.site.register(SkillCategory)
+admin.site.register(skill)
+admin.site.register(KeyCoursesCategory)
+admin.site.register(KeyCourses)
 admin.site.register(PORs)
 admin.site.register(Achievements)
 admin.site.register(ProfessionalSummary)

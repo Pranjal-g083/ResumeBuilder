@@ -1,161 +1,349 @@
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
+from django.forms import formset_factory
+from django.contrib import messages
+from django.forms.models import model_to_dict
+import json
 # Create your views here.
 def TemplatesView(request):
     return render(request, 'templates.html')
 
-def PersonalInfoView(request):
+def resumeView(request,pk):
+    form=ResumeForm(request.POST or None)
+    i=0
     if request.method == 'POST':
-        form = PersonalInfoForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('education')
-    else:
-        form = PersonalInfoForm()
-    return render(request, 'personal_info.html', {'form':form})
+            obj=form.save(commit=False)
+            request.session['resume_id']=obj.id
+            obj.type=pk
+            obj.author=request.user
+            i=obj.id
+            obj.save()
+            return redirect('personal_info',obj.id)
+        
+    return render(request, 'resume.html', {'form':form, 'id':i})
 
-def ProfessionalSummaryView(request):
+def PersonalInfoView(request, pk):
+    # if there is already a personal info object for this resume, create a form with that object
+    form=PersonalInfoForm()
+    if Personal_Info.objects.filter(Resume=pk).exists():
+        print("exists")
+        # load the object having the details previously entered
+        form = PersonalInfoForm(instance=Personal_Info.objects.get(Resume=pk))
+    if request.method == 'POST':
+        if Personal_Info.objects.filter(Resume=pk).exists():
+            form = PersonalInfoForm(request.POST, request.FILES)
+            if form.is_valid():
+                obj=Personal_Info.objects.get(Resume=pk)
+                obj.delete()
+                obj = form.save(commit=False)
+                obj.Resume = Resume.objects.get(id=pk)
+                obj.save()
+                return redirect('professional_summary', pk)
+        else:
+            form=PersonalInfoForm(request.POST, request.FILES)
+            if form.is_valid():
+                obj = form.save(commit=False)
+                obj.Resume = Resume.objects.get(id=pk)
+                obj.save()
+                return redirect('professional_summary', pk)
+    return render(request, 'personal_info.html', {'form': form})
+
+
+def ProfessionalSummaryView(request, pk):
+    form=ProfessionalSummaryForm()
+    if ProfessionalSummary.objects.filter(Resume=pk).exists():
+        form=ProfessionalSummaryForm(instance=ProfessionalSummary.objects.get(Resume=pk))
+    
     if request.method == 'POST':
         form = ProfessionalSummaryForm(request.POST)
         if form.is_valid():
-            form.save(commit=False)
-            return redirect('education')
-    else:
-        form = ProfessionalSummaryForm()
+            if ProfessionalSummary.objects.filter(Resume=pk).exists():
+                obj=ProfessionalSummary.objects.get(Resume=pk)
+                obj.delete()
+            obj = form.save(commit=False)
+            obj.Resume = Resume.objects.get(id=pk)
+            obj.save()
+            return redirect('skill_category', pk)
     return render(request, 'professional_summary.html', {'form':form})
 
-def EducationView(request):
-    form = EducationForm(request.POST or None)
+def EducationView(request,pk):
+    EducationFormSet = formset_factory(EducationForm, extra=0, min_num=1, validate_min=True)
+    
+    formset = EducationFormSet(request.POST or None)
+    forms=[]
+    if Education.objects.filter(Resume=pk).exists():
+        # load all the objects having the details previously entered
+        education=Education.objects.filter(Resume=pk)
+        for edu in education:
+            forms.append(EducationForm(instance=edu))
     if request.method == 'POST':
-        if form.is_valid():
-            form.save(commit=False)
-            return redirect('education')
-    return render(request, 'education.html', {'form':form})
+        # check if formset has atleast one form filled
+        if formset.is_valid():
+            if Education.objects.filter(Resume=pk).exists():
+                Education.objects.filter(Resume=pk).delete()
+            for form in formset:
+                obj = form.save(commit=False)
+                obj.Resume = Resume.objects.get(id=pk)
+                obj.save()
+            for form in forms:
+                obj = form.save(commit=False)
+                obj.Resume = Resume.objects.get(id=pk)
+                obj.save()
+            return redirect('project',pk)
+        else:
+            messages.error(request, 'Please fill atleast one form')
+    return render(request, 'education.html', {'formset': formset, 'forms':forms})
 
-def EducationView_Form(request):
-    return render(request, 'education_form.html', {'form': EducationForm()})
 
-def ExperienceView(request):
-    form=ExperienceForm(request.POST or None)
+
+def ExperienceView(request, pk):
+    ExperienceFormSet = formset_factory(ExperienceForm, extra=0)
+    formset = ExperienceFormSet(request.POST or None)
+    forms=[]
+    if Experience.objects.filter(Resume=pk).exists():
+        # load all the objects having the details previously entered
+        experiences = Experience.objects.filter(Resume=pk)
+        for experience in experiences:
+            forms.append(ExperienceForm(instance=experience))
     if request.method == 'POST':
-        if form.is_valid():
-            form.save(commit=False)
-            return redirect('experience')
-    return render(request, 'experience.html', {'form':form})
+        if formset.is_valid():
+            if Experience.objects.filter(Resume=pk).exists():
+                Experience.objects.filter(Resume=pk).delete()
+            for form in formset:
+                obj = form.save(commit=False)
+                obj.Resume = Resume.objects.get(id=pk)
+                obj.save()
+            for form in forms:
+                obj = form.save(commit=False)
+                obj.Resume = Resume.objects.get(id=pk)
+                obj.save()
+            return redirect('education', pk)
+        else:
+            print(formset.errors)
+    return render(request, 'experience.html', {'formset': formset, 'forms':forms})
 
-def ExperienceView_Form(request):
-    return render(request, 'experience_form.html', {'form':ExperienceForm()})
 
-def SkillCategoryView(request):
-    form=SkillCategoryForm(request.POST or None)
+
+
+def SkillCategoryView(request,pk):
+    SkillFormSet=formset_factory(skillForm, extra=1)
+    PreviousData={}
+    if SkillCategory.objects.filter(Resume=pk).exists():
+        skill_category=SkillCategory.objects.filter(Resume=pk)
+        PreviousData['category']=[]
+        i=0
+        for skillcategory in skill_category:
+            PreviousData['category'].append({'category':skillcategory.Name,'skills': []})
+            for skil in skill.objects.filter(Category=skillcategory):
+                PreviousData['category'][i]['skills'].append(skil.Name)
+            i+=1
     if request.method == 'POST':
-        if form.is_valid():
-            form.save(commit=False)
-            return redirect('skill_category')
-    request.session['i'] = 0
-    return render(request, 'skill_category.html', {'form':form})
-
-def SkillCategoryView_Form(request):
-    form = skillForm(request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save(commit=False)
-            return redirect('skill_category')
+        skill_category_form=SkillCategoryForm(request.POST)
+        formset=SkillFormSet(request.POST)
+        if formset.is_valid() and skill_category_form.is_valid():
+            skill_category=skill_category_form.save(commit=False)
+            skill_category.Resume=Resume.objects.get(id=pk)
+            skill_category.save()
+            formset=SkillFormSet(request.POST)
+            for form in formset:
+                obj=form.save(commit=False)
+                obj.Category=skill_category
+                obj.save()
+            
+            return redirect('skill_category',pk)
     else:
-        # Get the current value of i from the session or default to 0
-        i = request.session.get('i', 0)
-        # Increment i by 1
-        i += 1
-        # Save the new value of i in the session
-        request.session['i'] = i
-    return render(request, 'skill_category_form.html', {'form': SkillCategoryForm(), 'id': request.session['i']})
+        skill_category_form=SkillCategoryForm()
+        formset=SkillFormSet()
+    return render(request, 'skill_category.html', {'formset':formset, 'skill_category_form':skill_category_form, 'PreviousData':PreviousData, 'pk':pk})
 
-
-def SkillView_Form(request):
-    return render(request, 'skill_form.html', {'form':skillForm()})
-
-def ProjectView(request):
-    form=ProjectForm(request.POST or None)
+def ProjectView(request,pk):
+    ProjectFormSet = formset_factory(ProjectForm, extra=0)
+    formset=ProjectFormSet(request.POST or None)
+    forms=[]
+    if Project.objects.filter(Resume=pk).exists():
+        for project in Project.objects.filter(Resume=pk):
+            forms.append(ProjectForm(instance=project))
     if request.method == 'POST':
-        if form.is_valid():
-            form.save(commit=False)
-            return redirect('project')
-    return render(request, 'project.html', {'form':form})
+        if formset.is_valid():
+            if Project.objects.filter(Resume=pk).exists():
+                Project.objects.filter(Resume=pk).delete()
+            for form in formset:
+                obj = form.save(commit=False)
+                obj.Resume = Resume.objects.get(id=pk)
+                obj.save()
+            for form in forms:
+                obj = form.save(commit=False)
+                obj.Resume = Resume.objects.get(id=pk)
+                obj.save()
+            return redirect('key_courses_category',pk)
+    print(forms)
+    return render(request, 'project.html', {'formset':formset, 'forms':forms})
 
-def ProjectView_Form(request):
-    return render(request, 'project_form.html', {'form':ProjectForm()})
-
-def KeyCoursesCategoryView(request):
-    form=KeyCoursesCategoryForm(request.POST or None)
+def KeyCoursesCategoryView(request,id):
+    KeyCoursesFormSet = formset_factory(KeyCoursesForm, extra=0)
+    PreviousData={}
+    if KeyCoursesCategory.objects.filter(Resume=id).exists():
+        key_courses_category=KeyCoursesCategory.objects.filter(Resume=id)
+        PreviousData['category']=[]
+        i=0
+        for key_courses_category in key_courses_category:
+            PreviousData['category'].append({'category':key_courses_category.Name,'courses': []})
+            for course in KeyCourses.objects.filter(Category=key_courses_category):
+                PreviousData['category'][i]['courses'].append(course.Name)
+            i+=1
     if request.method == 'POST':
-        if form.is_valid():
-            form.save(commit=False)
-            return redirect('key_courses_category')
-    request.session['key'] = 0
-    return render(request, 'key_courses_category.html', {'form':form})
-
-def KeyCoursesCategoryView_Form(request):
-    form = KeyCoursesForm(request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save(commit=False)
-            return redirect('key_courses_category')
+        Key_courses_category_form=KeyCoursesCategoryForm(request.POST)
+        formset=KeyCoursesFormSet(request.POST)
+        if formset.is_valid() and Key_courses_category_form.is_valid():
+            key_courses_category=Key_courses_category_form.save(commit=False)
+            key_courses_category.Resume=Resume.objects.get(id=id)
+            key_courses_category.save()
+            formset=KeyCoursesFormSet(request.POST)
+            for form in formset:
+                obj=form.save(commit=False)
+                obj.Category=key_courses_category
+                obj.save()
+            return redirect('key_courses_category',id)
     else:
-        # Get the current value of i from the session or default to 0
-        key = request.session.get('key', 0)
-        # Increment i by 1
-        key += 1
-        # Save the new value of i in the session
-        request.session['key'] = key
-    return render(request, 'key_courses_category_form.html', {'form': KeyCoursesCategoryForm(), 'id': request.session['key']})
+        key_courses_category_form=KeyCoursesCategoryForm()
+        formset=KeyCoursesFormSet()
+    return render(request, 'key_courses_category.html', {'formset':formset, 'key_courses_category_form':key_courses_category_form, 'PreviousData':PreviousData, 'pk':id})
 
-def KeyCoursesView_Form(request):
-    return render(request, 'key_courses_form.html', {'form':KeyCoursesForm()})
 
-def PORView(request):
-    form=Porform(request.POST or None)
+def PORView(request,pk):
+    PorFormSet = formset_factory(Porform, extra=0)
+    formset=PorFormSet(request.POST or None)
+    forms=[]
+    if PORs.objects.filter(Resume=pk).exists():
+        for por in PORs.objects.filter(Resume=pk):
+            forms.append(Porform(instance=por))
     if request.method == 'POST':
-        if form.is_valid():
-            form.save(commit=False)
-            return redirect('por')
-    return render(request, 'por.html', {'form':form})
+        
+        if formset.is_valid():
+            if PORs.objects.filter(Resume=pk).exists():
+                PORs.objects.filter(Resume=pk).delete()
+            for form in formset:
+                obj = form.save(commit=False)
+                obj.Resume = Resume.objects.get(id=pk)
+                obj.save()
+            for form in forms:
+                obj = form.save(commit=False)
+                obj.Resume = Resume.objects.get(id=pk)
+                obj.save()
+            return redirect('extra_curricular',pk)
+    return render(request, 'por.html', {'formset':formset, 'forms':forms})
 
-def PORView_Form(request):
-    return render(request, 'por_form.html', {'form':Porform()})
-
-def ExtraCurricularView(request):
-    form=ExtraCurricularForm(request.POST or None)
+def ExtraCurricularView(request,pk):
+    ExtraCurricularFormSet = formset_factory(ExtraCurricularForm, extra=0)
+    formset=ExtraCurricularFormSet(request.POST or None)
+    forms=[]
+    if ExtraCurricular.objects.filter(Resume=pk).exists():
+        for extra in ExtraCurricular.objects.filter(Resume=pk):
+            forms.append(ExtraCurricularForm(instance=extra))
     if request.method == 'POST':
-        if form.is_valid():
-            form.save(commit=False)
-            return redirect('extra_curricular')
-    return render(request, 'extra_curricular.html', {'form':form})
+        if ExtraCurricular.objects.filter(Resume=pk).exists():
+            ExtraCurricular.objects.filter(Resume=pk).delete()
+        if formset.is_valid():
+            for form in formset:
+                obj = form.save(commit=False)
+                obj.Resume = Resume.objects.get(id=pk)
+                obj.save()
+            for form in forms:
+                obj = form.save(commit=False)
+                obj.Resume = Resume.objects.get(id=pk)
+                obj.save()
+            return redirect('achievements',pk)
 
-def ExtraCurricularView_Form(request):
-    return render(request, 'extra_curricular_form.html', {'form':ExtraCurricularForm()})
+    return render(request, 'extra_curricular.html', {'formset':formset, 'forms':forms})
 
-def AchievementView(request):
-    form=AchievementForm(request.POST or None)
+
+def AchievementView(request,pk):
+    AchievementFormSet = formset_factory(AchievementForm, extra=1)
+    formset=AchievementFormSet(request.POST or None)
+    forms=[]
+    if Achievements.objects.filter(Resume=pk).exists():
+        for achievement in Achievements.objects.filter(Resume=pk):
+            forms.append(AchievementForm(instance=achievement))
     if request.method == 'POST':
-        if form.is_valid():
-            form.save(commit=False)
-            return redirect('achievement')
-    return render(request, 'achievement.html', {'form':form})
+        if Achievements.objects.filter(Resume=pk).exists():
+            Achievements.objects.filter(Resume=pk).delete()
+        if formset.is_valid():
+            for form in formset:
+                obj = form.save(commit=False)
+                obj.Resume = Resume.objects.get(id=pk)
+                obj.save()
+            for form in forms:
+                obj=form.save(commit=False)
+                obj.Resume = Resume.objects.get(id=pk)
+                obj.save()
+            return redirect('certifications',pk)
+    
+    return render(request, 'achievement.html', {'formset':formset, 'forms':forms})
 
-def AchievementView_Form(request):
-    return render(request, 'achievement_form.html', {'form':AchievementForm()})
 
-def CertificationView(request):
-    form=CertificationForm(request.POST or None)
+def CertificationView(request,pk):
+    CertificationFormSet = formset_factory(CertificationForm, extra=0)
+    formset=CertificationFormSet(request.POST or None)
+    forms=[]
+    if Certifications.objects.filter(Resume=pk).exists():
+        for certification in Certifications.objects.filter(Resume=pk):
+            forms.append(CertificationForm(instance=certification))
     if request.method == 'POST':
-        if form.is_valid():
-            form.save(commit=False)
-            return redirect('certification')
-    return render(request, 'certification.html', {'form':form})
+        if formset.is_valid():
+            if Certifications.objects.filter(Resume=pk).exists():
+                Certifications.objects.filter(Resume=pk).delete()
+            for form in formset:
+                obj = form.save(commit=False)
+                obj.Resume = Resume.objects.get(id=pk)
+                obj.save()
+            for form in forms:
+                obj = form.save(commit=False)
+                obj.Resume = Resume.objects.get(id=pk)
+                obj.save()
+            return redirect('download',pk)
+    return render(request, 'certification.html', {'formset':formset, 'forms':forms})
 
-def CertificationView_Form(request):
-    return render(request, 'certification_form.html', {'form':CertificationForm()})
 
-def DownloadView(request):
-    return render(request, 'download.html')
+def DownloadView(request,pk):
+    ResumeData={}
+    ResumeData['Personal_Info']=model_to_dict(Personal_Info.objects.get(Resume=pk))
+    ResumeData['ProfessionalSummary']=model_to_dict(ProfessionalSummary.objects.get(Resume=pk))
+    ResumeData['Skills']=[]
+    for skillCategory in SkillCategory.objects.filter(Resume=pk):
+        ResumeData['Skills'].append({'SkillName':skillCategory.Name,'skills':""})
+        for skil in skill.objects.filter(Category=skillCategory):
+            ResumeData['Skills'][-1]['skills']=ResumeData['Skills'][-1]['skills']+skil.Name+", "
+        ResumeData['Skills'][-1]['skills']=ResumeData['Skills'][-1]['skills'][:-2]
+    ResumeData['Experience']=[]
+    for experience in Experience.objects.filter(Resume=pk):
+        ResumeData['Experience'].append(model_to_dict(experience))
+    ResumeData['Education']=[]
+    for education in Education.objects.filter(Resume=pk):
+        ResumeData['Education'].append(model_to_dict(education))
+    ResumeData['Projects']=[]
+    for project in Project.objects.filter(Resume=pk):
+        ResumeData['Projects'].append(model_to_dict(project))
+    ResumeData['KeyCourses']=[]
+    for keyCourses in KeyCoursesCategory.objects.filter(Resume=pk):
+        ResumeData['KeyCourses'].append({'Category':keyCourses.Name,'Courses':""})
+        for course in KeyCourses.objects.filter(Category=keyCourses):
+            ResumeData['KeyCourses'][-1]['Courses']=ResumeData['KeyCourses'][-1]['Courses']+course.Name+", "
+        ResumeData['KeyCourses'][-1]['Courses']=ResumeData['KeyCourses'][-1]['Courses'][:-2]
+    ResumeData['PORS']=[]
+    for por in PORs.objects.filter(Resume=pk):
+        ResumeData['PORS'].append(model_to_dict(por))
+    ResumeData['ExtraCurriculars']=[]
+    for extra in ExtraCurricular.objects.filter(Resume=pk):
+        ResumeData['ExtraCurriculars'].append(model_to_dict(extra))
+    ResumeData['Achievements']=[]
+    for achievement in Achievements.objects.filter(Resume=pk):
+        ResumeData['Achievements'].append(model_to_dict(achievement))
+    ResumeData['Certifications']=[]
+    for certification in Certifications.objects.filter(Resume=pk):
+        ResumeData['Certifications'].append(model_to_dict(certification))
+    file=open("ResumeData.json","w")
+    file.write(json.dumps(ResumeData))
+    file.close()
+    return render(request, 'download.html', {'pk':pk})

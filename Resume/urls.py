@@ -1,28 +1,21 @@
 from django.urls import path, include
 from .views import *
+from django.conf.urls.static import static
+from django.conf import settings
+
 urlpatterns = [
     path('templates/', TemplatesView, name='templates'),
-    path('personal_info/', PersonalInfoView, name='personal_info'),
-    path('professional_summary/', ProfessionalSummaryView, name='professional_summary'),
-    path('education/', EducationView, name='education'),
-    path('education_form/', EducationView_Form, name='education_form'),
-    path('experience/', ExperienceView, name='experience'),
-    path('experience_form/', ExperienceView_Form, name='experience_form'),
-    path('skill_category/', SkillCategoryView, name='skill_category'),
-    path('skill_category_form/', SkillCategoryView_Form, name='skill_category_form'),
-    path('skill_form/', SkillView_Form, name='skill_form'),
-    path('project/', ProjectView, name='project'),
-    path('project_form/', ProjectView_Form, name='project_form'),
-    path('key_courses_category/', KeyCoursesCategoryView, name='key_courses_category'),
-    path('key_courses_category_form/', KeyCoursesCategoryView_Form, name='key_courses_category_form'),
-    path('key_courses_form/', KeyCoursesView_Form, name='key_courses_form'),
-    path('pors/', PORView, name='pors'),
-    path('pors_form/', PORView_Form, name='pors_form'),
-    path('extra_curricular/', ExtraCurricularView, name='extra_curricular'),
-    path('extra_curricular_form/', ExtraCurricularView_Form, name='extra_curricular_form'),
-    path('Achievement/', AchievementView, name='achievements'),
-    path('Achievement_form/', AchievementView_Form, name='achievements_form'),
-    path('Certification/', CertificationView, name='certifications'),
-    path('Certification_form/', CertificationView_Form, name='certifications_form'),
-    path('Download/', DownloadView, name='download'),
-]
+    path('personal_info/<int:pk>', PersonalInfoView, name='personal_info'),
+    path('professional_summary/<int:pk>', ProfessionalSummaryView, name='professional_summary'),
+    path('education/<int:pk>', EducationView, name='education'),
+    path('experience/<int:pk>', ExperienceView, name='experience'),
+    path('skill_category/<int:pk>', SkillCategoryView, name='skill_category'),
+    path('project/<int:pk>', ProjectView, name='project'),
+    path('key_courses_category/<int:id>', KeyCoursesCategoryView, name='key_courses_category'),
+    path('pors/<int:pk>', PORView, name='pors'),
+    path('extra_curricular/<int:pk>', ExtraCurricularView, name='extra_curricular'),
+    path('Achievement/<int:pk>', AchievementView, name='achievements'),
+    path('Certification/<int:pk>', CertificationView, name='certifications'),
+    path('Download/<int:pk>', DownloadView, name='download'),
+    path('Resume/<int:pk>/', resumeView, name='resume'),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,20 +1,81 @@
-{% extends 'form.html' %}
-{% load crispy_forms_tags %}
+{% extends 'base.html' %}
+{% load crispy_forms_tags%}
 {% load static %}
-{% block form_content %}
-    <div class="card-body p-sm-5 row d-flex justify-content-center">
-        <div class="col-md-3">
-            <img src="{% static 'assets/img/responsibility.png' %}" >
-        </div>
-        <h2 class="text-center mb-4">Add Your Postitions of Responsibility here</h2>
-        <div id="PorForm">
-        </div>
-        <button class="btn btn-light" id="add" type="button"
-                hx-get="{% url 'pors_form' %}" hx-swap="beforeend" hx-target="#PorForm">
-            <img height="25px" width="25px" src="{% static 'assets/img/add.svg' %}"></img> Add POR
-        </button>
-        <div>
-            <a class="btn btn-primary d-block w-100 mt-3" role="button" href="{% url 'extra_curricular' %}">Save and Continue</a>
+{% block content %}
+<section class="py-5" style="margin-bottom: -205px;margin-top: -50px;">
+    <div class="container py-5">
+        <div class="row mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <nav style="font-weight: bold;display: inline-block;margin-top: 0px;margin-bottom: 0px;">
+                    <ul class="pagination">
+                        <li class="page-item" style="margin-left: 5px;margin-right: 5px;"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                        <li class="page-item active" style="margin-right: 5px;margin-left: 5px;background: var(--bs-pagination-active-bg);color: var(--bs-pagination-active-bg);"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item" style="margin-left: 5px;margin-right: 5px;"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item" style="margin-left: 5px;margin-right: 5px;"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item" style="margin-left: 5px;margin-right: 5px;"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item" style="margin-left: 5px;margin-right: 5px;"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item" style="margin-left: 5px;margin-right: 5px;"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
-{% endblock form_content %}
+</section>
+<form style="padding-top: 20px;padding-bottom: 20px;padding-left: 19px;padding-right: 19px;" method="POST">
+    <section class="py-4 py-xl-5">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-8 col-lg-8 col-xl-8 col-xxl-8">
+                    <div class="card mb-5">
+                        <div class="card-body p-sm-5 row d-flex justify-content-center">
+                            <div class="col-md-3">
+                                <img src="{% static 'assets/img/responsibility.png' %}" >
+                            </div>
+                            <h2 class="text-center mb-4">Add Your Postitions of Responsibility here</h2>
+                            <div id="ProjectForm">
+                                {%for form in forms%}
+                                {% csrf_token %}
+                                {{form|crispy}}
+                                <hr>
+                                {%endfor%}
+                                {{formset.management_form}}
+                                {%csrf_token%}
+                                {% for form in formset %}
+                                {{form|crispy}}
+                                <hr>
+                                {% endfor %}
+                                <div id="empty_form" style="display: none;">
+                                    {{formset.empty_form|crispy}}
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-light" type="button" id="addMore"><img height="25px" width="25px" src="{% static 'assets/img/add.svg' %}"></img> Add POR</button>
+                            
+                            <div class="text-center">
+                                <button class="btn btn-primary mt-3" type="submit">Save and Continue</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+ {% comment %}add jquery  {% endcomment %}
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+ {% comment %} Add a script to increase the number on forms on clicking add more {% endcomment %}
+ <script>
+     $(document).ready(function() {
+         $("#addMore").click(function() {
+             var form_idx = $('#id_form-TOTAL_FORMS').val();
+             $('#ProjectForm').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
+             // add an hr tag after the last form added
+             $('#ProjectForm').append('<hr>');
+             $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+ 
+         });
+     });
+ </script>
+{% endblock%}

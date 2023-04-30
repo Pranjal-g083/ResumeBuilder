@@ -22,7 +22,7 @@
         </div>
     </div>
 </section>
-<form style="padding-top: 20px;padding-bottom: 20px;padding-left: 19px;padding-right: 19px;">
+<form style="padding-top: 20px;padding-bottom: 20px;padding-left: 19px;padding-right: 19px;" method="POST" enctype="multipart/form-data">
     <section class="py-4 py-xl-5">
         <div class="container">
             <div class="row d-flex justify-content-center">
@@ -33,11 +33,12 @@
                             <img src="{%static 'assets/img/contact-info.png'%}" >
                             </div>
                             <h2 class="text-center mb-4">Please write your Personal Details here</h2>
-                            <form method="post">
                                 {% csrf_token %}
+                                {{form.media}}
                                 {{form|crispy}}
-                                <div><a class="btn btn-primary d-block w-100 mt-2" role="button" href="{% url 'professional_summary' %}">Save and Continue</a></div>
-                            </form>
+                                <div class="text-center">
+                                    <button class="btn btn-primary mt-3" type="submit">Save and Continue</button>
+                                </div>
                         </div>
                     </div>
                 </div>
