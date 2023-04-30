@@ -2,25 +2,6 @@
 {% load crispy_forms_tags%}
 {% load static %}
 {% block content %}
-<section class="py-5" style="margin-bottom: -205px;margin-top: -50px;">
-    <div class="container py-5">
-        <div class="row mb-5">
-            <div class="col-md-8 col-xl-6 text-center mx-auto">
-                <nav style="font-weight: bold;display: inline-block;margin-top: 0px;margin-bottom: 0px;">
-                    <ul class="pagination">
-                        <li class="page-item" style="margin-left: 5px;margin-right: 5px;"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
-                        <li class="page-item active" style="margin-right: 5px;margin-left: 5px;background: var(--bs-pagination-active-bg);color: var(--bs-pagination-active-bg);"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item" style="margin-left: 5px;margin-right: 5px;"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item" style="margin-left: 5px;margin-right: 5px;"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item" style="margin-left: 5px;margin-right: 5px;"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item" style="margin-left: 5px;margin-right: 5px;"><a class="page-link" href="#">5</a></li>
-                        <li class="page-item" style="margin-left: 5px;margin-right: 5px;"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-</section>
 <form style="padding-top: 20px;padding-bottom: 20px;padding-left: 19px;padding-right: 19px;", method="POST">
     {% csrf_token %}
     <section class="py-4 py-xl-5">

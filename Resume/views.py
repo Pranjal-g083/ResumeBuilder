@@ -344,6 +344,6 @@ def DownloadView(request,pk):
     for certification in Certifications.objects.filter(Resume=pk):
         ResumeData['Certifications'].append(model_to_dict(certification))
     file=open("ResumeData.json","w")
-    file.write(json.dumps(ResumeData))
+    file.write(str(ResumeData))
     file.close()
     return render(request, 'download.html', {'pk':pk})

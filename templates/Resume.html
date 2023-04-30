@@ -1,11 +1,23 @@
-{% extends 'form.html' %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
-{% block form_content %}
-<h2 class="text-center mb-4">Name this resume</h2>
-    {% csrf_token %}
-    {{ form|crispy }}
-    <div class="text-center">
-        <button class="btn btn-primary mt-3" type="submit" href="{% url 'personal_info' id%}">Save</button>
-    </div>
+{% block content %}
+    <form style="padding-top: 20px;padding-bottom: 20px;padding-left: 19px;padding-right: 19px;" method="POST">
+        <section class="py-4 py-xl-5">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-8 col-lg-8 col-xl-8 col-xxl-8">
+                        <div class="card mb-5">
+                            <h2 class="text-center mb-4">Name this resume</h2>
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <div class="text-center">
+                                    <button class="btn btn-primary mt-3" type="submit" href="{% url 'personal_info' id%}">Save</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
 {% endblock%}
