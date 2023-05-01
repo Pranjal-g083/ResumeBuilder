@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.4.25)  1 MAY 2023 21:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.4.25)  2 MAY 2023 01:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1011,14 +1011,14 @@ Package hyperref Warning: Suppressing link with empty target on input line 24.
 
 Package hyperref Warning: Suppressing link with empty target on input line 24.
 
-File: ..//media/images/foto-sushi-6anudmpILw4-unsplash_XDMnyqr.jpg Graphic file
- (type jpg)
-<use ..//media/images/foto-sushi-6anudmpILw4-unsplash_XDMnyqr.jpg>
-Package pdftex.def Info: ..//media/images/foto-sushi-6anudmpILw4-unsplash_XDMny
-qr.jpg  used on input line 24.
-(pdftex.def)             Requested size: 113.80379pt x 113.80379pt.
+File: ..//media/images/icons8-responsibility-128_DZpnNHh.png Graphic file (type
+ png)
+<use ..//media/images/icons8-responsibility-128_DZpnNHh.png>
+Package pdftex.def Info: ..//media/images/icons8-responsibility-128_DZpnNHh.png
+  used on input line 24.
+(pdftex.def)             Requested size: 113.81358pt x 113.81358pt.
 
-Overfull \hbox (113.80379pt too wide) in paragraph at lines 24--24
+Overfull \hbox (113.81358pt too wide) in paragraph at lines 24--24
 []|[]| 
  []
 
@@ -1039,7 +1039,7 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 }
+l.89 }
       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1051,7 +1051,7 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 }
+l.89 }
       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1063,7 +1063,7 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 }
+l.89 }
       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1075,7 +1075,7 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 }
+l.89 }
       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1087,7 +1087,7 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 }
+l.89 }
       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1099,7 +1099,7 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 }
+l.89 }
       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1111,7 +1111,7 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 }
+l.89 }
       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1123,7 +1123,7 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 }
+l.89 }
       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1135,7 +1135,7 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 }
+l.89 }
       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1147,7 +1147,7 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 }
+l.89 }
       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1159,7 +1159,7 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 }
+l.89 }
       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1171,7 +1171,7 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 }
+l.89 }
       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1183,7 +1183,7 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 }
+l.89 }
       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1195,7 +1195,7 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 }
+l.89 }
       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1207,7 +1207,7 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 }
+l.89 }
       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1219,28 +1219,103 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 }
+l.89 }
       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 98.
+! Package xcolor Error: Undefined color `body'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.89 }
+      
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! Package xcolor Error: Undefined color `body'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.89 }
+      
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! Package xcolor Error: Undefined color `body'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.89 }
+      
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! Package xcolor Error: Undefined color `body'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.89 }
+      
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! Package xcolor Error: Undefined color `body'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.89 }
+      
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! Package xcolor Error: Undefined color `body'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.89 }
+      
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 [1
 
 {C:/Users/HP/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/MikTex/fonts/
 enc/dvips/base/8r.enc}{C:/MikTex/fonts/enc/dvips/lm/lm-ec.enc}{C:/MikTex/fonts/
-enc/dvips/lm/lm-ts1.enc} <..//media/images/foto-sushi-6anudmpILw4-unsplash_XDMn
-yqr.jpg>] (output.aux)
+enc/dvips/lm/lm-ts1.enc} <..//media/images/icons8-responsibility-128_DZpnNHh.pn
+g>]
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.166 \end{document}
+                     [2] (output.aux)
 Package rerunfilecheck Info: File `output.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 21095 strings out of 476331
- 394763 string characters out of 5804189
- 1868660 words of memory out of 5000000
- 41141 multiletter control sequences out of 15000+600000
+ 21097 strings out of 476331
+ 394773 string characters out of 5804189
+ 1869660 words of memory out of 5000000
+ 41143 multiletter control sequences out of 15000+600000
  522835 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  90i,13n,90p,389b,860s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1249,9 +1324,9 @@ ublic/amsfonts/cm/cmbx12.pfb><C:/MikTex/fonts/type1/public/lm/lmtk10.pfb><C:/Mi
 kTex/fonts/type1/public/lm/lmtt12.pfb><C:/MikTex/fonts/type1/urw/palatino/uplb8
 a.pfb><C:/MikTex/fonts/type1/urw/palatino/uplr8a.pfb><C:/MikTex/fonts/type1/urw
 /palatino/uplri8a.pfb>
-Output written on output.pdf (1 page, 1894929 bytes).
+Output written on output.pdf (2 pages, 109212 bytes).
 PDF statistics:
- 56 PDF objects out of 1000 (max. 8388607)
+ 62 PDF objects out of 1000 (max. 8388607)
  2 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

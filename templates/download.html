@@ -5,7 +5,7 @@
     <div class="container py-5">
         <div class="row mb-5">
             <div class="col-md-8 col-xl-6 text-center mx-auto">
-                <h2 class="fw-bold">Phew!&nbsp; &nbsp; Finally Completed</h2>
+                <h2 class="fw-bold">Phew!&nbsp; Finally Completed</h2>
                 <p class="text-muted"></p>
             </div>
         </div>
@@ -15,14 +15,9 @@
                     <div class="py-4" style="padding-left: 20px;">
                         <div class="row" style="margin-bottom: 10px;">
                             <div class="col-xl-6"><a href="#">
-                                    <h4 class="fw-bold" style="text-align: left;">Name</h4>
+                                    <h4 class="fw-bold" style="text-align: left;">{{Name}}</h4>
                                 </a></div>
                             <div class="col-xl-6"><a class="btn btn-primary" role="button" style="background: var(--bs-white);color: var(--bs-blue);" href="{% url 'personal_info' pk%}"><img src="{% static 'assets/img/edit.svg' %}">&nbsp; Edit This Resume</a></div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <p class="text-muted" style="text-align: left;">Date - DD/MM/YYYY<br>Any more details...</p>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -316,6 +316,10 @@ def CertificationView(request,pk):
 
 @login_required
 def DownloadView(request,pk):
+    # check if the resume's author is the current user
+    if Resume.objects.get(id=pk).author != request.user:
+        messages.info(request, 'You are not authorized to view this page')
+        return redirect('home')
     ResumeData={}
     resume=Resume.objects.get(id=pk)
     ResumeData['Personal_Info']=model_to_dict(Personal_Info.objects.get(Resume=pk))
@@ -369,7 +373,14 @@ def DownloadView(request,pk):
     for certification in Certifications.objects.filter(Resume=pk):
         ResumeData['Certifications'].append(model_to_dict(certification))
     CreatePDF(resume.type,resume.name+str(resume.id),ResumeData)
-    return render(request, 'download.html', {'pk':pk, 'name': 'assets/img/Template'+str(resume.type)+'.png','pdf':'assets/'+resume.name+str(resume.id)+'.pdf', 'tex': 'assets/'+resume.name+str(resume.id)+'.tex'})
+    context={
+        'pk':pk,
+        'name': 'assets/img/Template'+str(resume.type)+'.png',
+        'pdf':'assets/'+resume.name+str(resume.id)+'.pdf',
+        'tex': 'assets/'+resume.name+str(resume.id)+'.tex',
+        'Name':resume.name
+    }
+    return render(request, 'download.html', context)
 
 @login_required
 def works(request):

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.4.25)  1 MAY 2023 21:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.4.25)  2 MAY 2023 01:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -899,14 +899,11 @@ Package hyperref Info: Link coloring OFF on input line 67.
 
 \c@mv@tabular=\count349
 \c@mv@boldtabular=\count350
-<..//media/images/foto-sushi-6anudmpILw4-unsplash_XDMnyqr.jpg, id=10, 5781.6pt 
-x 3854.4pt>
-File: ..//media/images/foto-sushi-6anudmpILw4-unsplash_XDMnyqr.jpg Graphic file
- (type jpg)
-<use ..//media/images/foto-sushi-6anudmpILw4-unsplash_XDMnyqr.jpg>
-Package pdftex.def Info: ..//media/images/foto-sushi-6anudmpILw4-unsplash_XDMny
-qr.jpg  used on input line 80.
-(pdftex.def)             Requested size: 5781.58598pt x 3854.39066pt.
+<..//media/images/pic.jpg, id=10, 240.9pt x 296.60812pt>
+File: ..//media/images/pic.jpg Graphic file (type jpg)
+<use ..//media/images/pic.jpg>
+Package pdftex.def Info: ..//media/images/pic.jpg  used on input line 80.
+(pdftex.def)             Requested size: 240.8994pt x 296.60739pt.
 
 Overfull \hbox (1.59999pt too wide) in paragraph at lines 80--80
 [][] 
@@ -960,11 +957,6 @@ nput line 80.
 LaTeX Font Info:    Trying to load font information for U+fontawesomefree0 on i
 nput line 80.
 (C:\MikTex\tex/latex/fontawesome5\ufontawesomefree0.fd)
-Underfull \hbox (badness 10000) in paragraph at lines 80--80
-[][][] [][][] 
- []
-
-
 Overfull \hbox (27.85751pt too wide) in paragraph at lines 80--80
 []$[]$  $[]$  
  []
@@ -977,11 +969,6 @@ LaTeX Font Info:    Font shape `T1/RobotoSlab-TLF/b/n' aliased to
 (Font)              `T1/RobotoSlab-TLF/bold/n' on input line 91.
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
 (Font)              scaled to size 10.0pt on input line 92.
-
-Overfull \hbox (14.18861pt too wide) in paragraph at lines 94--99
-[] [] [] [] [] 
- []
-
 LaTeX Font Info:    Trying to load font information for TS1+lato-TLF on input l
 ine 115.
 (C:\MikTex\tex/latex/lato\ts1lato-tlf.fd
@@ -989,40 +976,42 @@ File: TS1lato-TLF.fd 2019/06/24 Font definitions for TS1/lato-TLF.
 )
 LaTeX Font Info:    Font shape `TS1/lato-TLF/m/n' will be
 (Font)              scaled to size 9.0pt on input line 115.
+LaTeX Font Info:    Font shape `T1/RobotoSlab-TLF/b/n' aliased to
+(Font)              `T1/RobotoSlab-TLF/bold/n' on input line 141.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/it' will be
-(Font)              scaled to size 10.0pt on input line 150.
+(Font)              scaled to size 10.0pt on input line 154.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/it' will be
-(Font)              scaled to size 12.0pt on input line 150.
+(Font)              scaled to size 12.0pt on input line 154.
 LaTeX Font Info:    Trying to load font information for U+fontawesomebrands0 on
- input line 181.
+ input line 187.
 (C:\MikTex\tex/latex/fontawesome5\ufontawesomebrands0.fd)
 LaTeX Font Info:    Font shape `U/fontawesomebrands0/solid/n' in size <12> not 
 available
 (Font)              Font shape `U/fontawesomebrands0/regular/n' tried instead o
-n input line 181.
+n input line 187.
 
-Package hyperref Warning: Suppressing link with empty target on input line 181.
+Package hyperref Warning: Suppressing link with empty target on input line 187.
 
 
 LaTeX Font Info:    Trying to load font information for U+fontawesomefree1 on i
-nput line 181.
+nput line 187.
 (C:\MikTex\tex/latex/fontawesome5\ufontawesomefree1.fd) [1
 
 {C:/MikTex/fonts/enc/dvips/roboto/rbto_j2bk2t.enc}{C:/MikTex/fonts/enc/dvips/fo
 ntawesome5/fa5free2.enc}{C:/MikTex/fonts/enc/dvips/lato/a_cl4kdn.enc}{C:/MikTex
 /fonts/enc/dvips/fontawesome5/fa5free0.enc}{C:/MikTex/fonts/enc/dvips/lato/a_rt
 66h3.enc}{C:/MikTex/fonts/enc/dvips/fontawesome5/fa5brands0.enc}{C:/MikTex/font
-s/enc/dvips/fontawesome5/fa5free1.enc} <..//media/images/foto-sushi-6anudmpILw4
--unsplash_XDMnyqr.jpg>] (output.aux)
+s/enc/dvips/fontawesome5/fa5free1.enc} <..//media/images/pic.jpg>] [2] (output.
+aux)
 Package rerunfilecheck Info: File `output.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 36903 strings out of 476331
- 750622 string characters out of 5804189
- 1879660 words of memory out of 5000000
- 56653 multiletter control sequences out of 15000+600000
- 758545 words of font info for 69 fonts, out of 8000000 for 9000
+ 36907 strings out of 476331
+ 750472 string characters out of 5804189
+ 1882660 words of memory out of 5000000
+ 56655 multiletter control sequences out of 15000+600000
+ 763740 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  107i,8n,106p,530b,2379s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/MikTex/fonts/type1/public/fontawesome5/FontAwesome5Brands-Regular.pfb><C:
@@ -1030,9 +1019,9 @@ Here is how much of TeX's memory you used:
 onts/type1/typoland/lato/Lato-Bold.pfb><C:/MikTex/fonts/type1/typoland/lato/Lat
 o-Italic.pfb><C:/MikTex/fonts/type1/typoland/lato/Lato-Regular.pfb><C:/MikTex/f
 onts/type1/google/roboto/RobotoSlab-Bold.pfb>
-Output written on output.pdf (1 page, 1943854 bytes).
+Output written on output.pdf (2 pages, 183477 bytes).
 PDF statistics:
- 73 PDF objects out of 1000 (max. 8388607)
- 2 named destinations out of 1000 (max. 500000)
+ 77 PDF objects out of 1000 (max. 8388607)
+ 3 named destinations out of 1000 (max. 500000)
  50 words of extra memory for PDF output out of 10000 (max. 10000000)
 

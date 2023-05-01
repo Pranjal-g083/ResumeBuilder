@@ -1,3 +1,5 @@
 # all the pycache files
 google_keys.json
 **/__pycache__/
+.obsidian/
+```

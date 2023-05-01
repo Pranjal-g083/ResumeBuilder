@@ -1,0 +1,211 @@
+\PassOptionsToPackage{dvipsnames}{xcolor}
+
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+
+% Change the page layout if you need to
+\geometry{left=1.2cm,right=1.2cm,top=1cm,bottom=1cm,columnsep=0.75cm}
+
+% The paracol package lets you typeset columns of text in parallel
+\usepackage{paracol}
+
+% Change the font if you want to, depending on whether
+% you're using pdflatex or xelatex/lualatex
+\ifxetexorluatex
+  % If using xelatex or lualatex:
+  \setmainfont{Roboto Slab}
+  \setsansfont{Lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\else
+  % If using pdflatex:
+  \usepackage[rm]{roboto}
+  \usepackage[defaultsans]{lato}
+  % \usepackage{sourcesanspro}
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
+
+% Fork (before v1.6.5a): Change the color codes to test your personal variant on any mode
+\ifdarkmode%
+  \definecolor{PrimaryColor}{HTML}{C69749}
+  \definecolor{SecondaryColor}{HTML}{D49B54}
+  \definecolor{ThirdColor}{HTML}{1877E8}
+  \definecolor{BodyColor}{HTML}{ABABAB}
+  \definecolor{EmphasisColor}{HTML}{ABABAB}
+  \definecolor{BackgroundColor}{HTML}{191919}
+\else%
+  \definecolor{PrimaryColor}{HTML}{001F5A}
+  \definecolor{SecondaryColor}{HTML}{0039AC}
+  \definecolor{ThirdColor}{HTML}{F3890B}
+  \definecolor{BodyColor}{HTML}{666666}
+  \definecolor{EmphasisColor}{HTML}{2E2E2E}
+  \definecolor{BackgroundColor}{HTML}{E2E2E2}
+\fi%
+
+\colorlet{name}{PrimaryColor}
+\colorlet{tagline}{SecondaryColor}
+\colorlet{heading}{PrimaryColor}
+\colorlet{headingrule}{ThirdColor}
+\colorlet{subheading}{SecondaryColor}
+\colorlet{accent}{SecondaryColor}
+\colorlet{emphasis}{EmphasisColor}
+\colorlet{body}{BodyColor}
+\pagecolor{BackgroundColor}
+
+% Change some fonts, if necessary
+\renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+\renewcommand{\personalinfofont}{\small\bfseries}
+\renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+\renewcommand{\cvsubsectionfont}{\large\bfseries}
+
+% Change the bullets for itemize and rating marker
+% for \cvskill if you want to
+\renewcommand{\itemmarker}{\small\textbullet}
+\renewcommand{\ratingmarker}{\faCircle}
+
+%% sample.bib contains your publications
+%% \addbibresource{sample.bib}
+
+\begin{document}
+    
+    \name{DHANANJAI}
+    % \tagline{Test Developer}
+    %% You can add multiple photos on the left or right
+    \photoL{4cm}{..//media/images/pic.jpg}
+
+    \personalinfo{
+        \phone{8901363163}
+        \email{dhananjai2905@gmail.com}
+        \location{Guwahati, Assam}
+    }
+    
+    \makecvheader
+
+    
+    %% Set the left/right column width ratio to 6:4.
+    \columnratio{0.3}
+
+    % Start a 2-column paracol. Both the left and right columns will automatically
+    % break across pages if things get too long.
+    \begin{paracol}{2}
+    
+         % ----- SKILLS -----
+        \cvsection{Skills}
+            \cvlang{Programming Languages}{}
+            \newline \medskip
+            \cvtag{C}
+            \cvtag{C++}
+            \cvtag{Java}
+            \cvtag{Python}
+            \cvtag{}
+            \newline
+            \divider
+            \cvlang{Frameworks}{}
+            \newline \medskip
+            \cvtag{django}
+            \cvtag{java}
+            \cvtag{nodejs}
+            \newline
+            \divider
+        % ----- SKILLS -----
+
+        % ----- KEY COURSES -----
+        \cvsection{Key Courses}
+            \cvlang{Computer Science}{}
+            \medskip
+            \begin{itemize}
+                \item Discrete Mathematics
+                \item DSA
+                \item PLL
+            \end{itemize}
+            \divider
+            \cvlang{Mathematics}{}
+            \medskip
+            \begin{itemize}
+                \item Linear Algebra
+                \item Optimization
+                \item Graph Theory
+            \end{itemize}
+            \divider
+        % ----- KEY COURSES -----
+
+        % ----- ACHIEVEMENTS -----
+        \cvsection{Achievements}
+            \begin{itemize}
+                \item {
+                    \textbf{AIR 690} \newline
+                    Jee Mains (Sep 20)
+                }
+            \end{itemize}
+        % ----- ACHIEVEMENTS -----
+
+        % ----- EXTRACURRICULARS -----
+        \cvsection{\Large Extracurriculars}
+            \cvlang{NSS}{}
+            \par
+            Visited schools in villages and conducted various workshops.
+            \smallskip
+        % ----- EXTRACURRICULARS -----
+            
+        \newpage
+
+        \switchcolumn
+        
+        % ----- PROFESSIONAL SUMMARY -----
+        \cvsection{Professional summary}
+            \begin{quote}
+                As a software developer with 5 years of experience, I have expertise in developing web applications using Java Framework. I am skilled in using tools such as Git, Maven, and Jenkins for version control and continuous integration. I hold an Oracle Certified Professional, Java SE 11 Developer certification and have completed training in Agile methodologies.
+            \end{quote}
+        % ----- PROFESSIONAL SUMMARY -----
+
+        % ----- EXPERIENCE -----
+        \cvsection{Experience}
+                \cvevent{Software Developer Engineering Intern }
+                    {| Jio}
+                    {May 23 -- Jun 23}{}
+                \begin{itemize}
+                        \item Software Developer Intern, Jio Company (May - June 2023) During my summer internship at Jio Company, I worked on the Development team to develop and implement social media campaigns
+                        \item I conducted market research to identify target audiences and created engaging content to increase brand awareness
+                        \item My efforts contributed to a 15% increase in social media engagement and a 10% increase in website traffic.
+                \end{itemize}
+                \divider
+        % ----- EXPERIENCE -----
+        
+        % ----- EDUCATION -----
+        \cvsection{Education}
+                \cvevent{B.Tech, Computer Science Engineering}
+                    {| Indian Institute of Engineering Guwahati}
+                    {Nov 20 -- May 24}{}
+                \begin{itemize}
+                    \item GPA: 7.5
+                \end{itemize}
+                \divider
+        % ----- EDUCATION -----
+        
+        % ----- PROJECTS -----
+        \cvsection{Projects}
+                \cvevent{Resume Builder WebApp }
+                    {\cvreference{| \faGithub}{https://github.com/DestinyWarrior/resumeApp}\cvreference{| \faGlobe}{}}
+                    {Apr 23 -- May 23}{}
+                \begin{itemize}
+                        \item Resume Builder Webapp for PLL course.
+This offers a GUI based solution for building a resume.
+                \end{itemize}
+                \divider
+        % ----- PROJECTS -----
+        
+        % ----- CERTIFICATIONS -----
+        \begin{samepage}
+            \cvsection{Certifications}
+            \begin{itemize}
+                    \item \cvevent{\certification{Web Development in Django}}
+                            {| University of Michigan }{}{}
+            \end{itemize}
+        \end{samepage}
+        % ----- CERTIFICATIONS -----
+
+        % ----- PORS -----
+        \cvsection{Positions of responsibility}
+            \cvevent{Open-Source Head }{| Coding Club}{Apr 22 -- Apr 23}{}
+            \divider
+        % ----- PORS -----
+    \end{paracol}
+\end{document}
