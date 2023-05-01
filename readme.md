@@ -66,6 +66,9 @@ The resumes can also be edited later.
 
 ### Resume Form
 ![form](images/ResumeForm.jpg)
+
+### Generate Resume
+![generate](images/GeneratingPDF.jpg)
 ---
 
 ## Demo
@@ -82,9 +85,9 @@ Login with google:
 After logging in, you will be redirected to the home page with success message
 ![success](images/SuccessLoginGmail.jpeg)
 Login with Office 365:
-![office](images/MicrosoftLOginRedirect.jpeg)
+![office](images/MicrosoftLoginRedirect.jpeg)
 After logging in, you will be redirected to the home page with success message
-![success](images/SuccessLoginMIcrosoft.jpeg)
+![success](images/SuccessLoginMicrosoft.jpeg)
 Register with username and password:
 ![username](images/SignupWithEmailPage.jpeg)
 After registering, you will be redirected to the login Page
@@ -144,7 +147,39 @@ In the My Works Page, you can view all your resumes:
 
 ---
 ## Instructions
+1. First create a virtual environment using the following command:
+    ```bash
+    python3 -m venv env
+    ```
+2. Activate the virtual environment using the following command:
+    ```bash
+    source env/bin/activate
+    ```
+3. Install all the dependencies using the following command:
+    ```bash
+    pip install -r requirements.txt
+    ```
+4. Download the texlive package using the following command:
+  * For Linux
+    ```bash
+    sudo apt-get install texlive-full
+    ```
+  * For Windows Download the texlive package from [here](https://www.tug.org/texlive/acquire-netinstall.html)
+    and install it.
+  
+  * For Mac
+    ```bash
+    brew cask install mactex
+    ```
 
+5. Run the following command to start the server:
+    ```bash
+    python manage.py runserver
+    ```
+
+6. Go to the following [url](http://localhost:8000) to view the website.
+
+  
 [Back To The Top](#resume-builder-website)
 
 ---
