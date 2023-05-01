@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.microsoft',
     'crispy_forms',
+    'crispy_bootstrap4'
 ]
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
