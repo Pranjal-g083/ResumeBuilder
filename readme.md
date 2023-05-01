@@ -192,7 +192,7 @@ In the My Works Page, you can view all your resumes:
 - Overleaf Templates:
     - Template 1: [Template 1](https://www.overleaf.com/latex/templates/altacv-nicolasomar-fork/htfpmrwhbwpw)
     - Template 2: [Template 2](https://www.overleaf.com/latex/templates/resume-template-by-krishna-priyatham-potluri/cykhvmybxmjz)
-    - Template 3: See `templates` folder in the repository
+    - Template 3: See `Template3` folder in the repository
     - IITG Template: [IITG Template](https://www.overleaf.com/latex/templates/iit-guwahati-resume/fvqtppmzhvxn)
 - Google Authentication: [Google Authentication](https://django-allauth.readthedocs.io/en/latest/providers.html#google)
 - Office 365 Authentication: [Office 365 Authentication](https://django-allauth.readthedocs.io/en/latest/providers.html#microsoft-graph)
