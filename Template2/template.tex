@@ -1,0 +1,176 @@
+\documentclass{resume}
+\usepackage{tikz}
+
+\begin{document}
+
+\fontfamily{ppl}\selectfont
+
+\noindent
+\begin{tabularx}{\linewidth}{@{}m{0.75\textwidth} m{0\textwidth}@{}}
+{
+    \large {$Personal_Info.Name} \newline
+    \small{
+        \href{}{Address, City, State }\newline
+        \clink{
+            #if $Personal_Info.Website
+            \href{$Personal_Info.Website}{$Personal_Info.Website} \textbf{·}
+            #end if
+            \href{$Personal_Info.Email}{$Personal_Info.Email} \textbf{·}
+            \href{}{$Personal_Info.Phone} \textbf{·}
+            #if $Personal_Info.Github
+            \href{$Personal_Info.Github}{GitHub} \textbf{·} 
+            #end if
+            #if $Personal_Info.Linkedin
+            \href{$Personal_Info.Linkedin}{Linkedin} \textbf{·} 
+            #end if
+        } \newline
+    }
+}
+& 
+{
+    \includegraphics[width=4cm, height=4cm]{$Personal_Info.Profile_Pic}
+}
+\end{tabularx}
+
+\csection{Professional Summary}{\small
+    \begin{itemize}[label={}]
+        \item \footnotesize $ProfessionalSummary
+    \end{itemize}   
+}
+
+#if $Experience
+\csection{Experience}{\small
+    \begin{itemize}
+        #for $experience in $Experience
+        \item {
+            \textbf{$experience.Position}  
+            \vline \hspace{1pt} $experience.Company \newline
+            \textit{ \null\hspace{10pt}($experience.StartDate – $experience.StartDate)} 
+            \begin{itemize}
+                #for $desc in $experience.WorkDoneSplit
+                    \item $desc
+                #end for
+            \end{itemize}
+        }
+        #end for
+    \end{itemize}
+}
+#end if
+
+\csection{Education}{\small
+    \begin{itemize}
+        #for $education in $Education
+        \item {
+            \textbf{$education.Degree} \vline \hspace{1pt} $education.Field \null\hfill ($education.startYear-$education.EndYear) \newline
+            \null \hspace{15pt} $education.Institute \newline
+            \null \hspace{15pt} CGPA: $education.CGPA
+        }
+        #end for
+    \end{itemize}
+}
+
+\csection{Skills}{\small
+    \begin{itemize}
+        #for $skillcat in $Skills
+        \item {
+            \textbf{$skillcat.SkillName} \null\vspace{5pt} \newline
+            #for $skill in $skillcat.SkillSet
+            \tikz[baseline]\node[anchor=base,draw=body,rounded corners,inner xsep=1ex,inner ysep=0.75ex,text height=1.5ex,text depth=.25ex]
+                {$skill};
+            #end for
+        }
+        #end for
+    \end{itemize}
+}
+
+\csection{Projects}{\small
+    \begin{itemize}
+    #for $project in $Projects
+        \item {
+            \textbf{$project.ProjectName}
+            \null\hfill ($project.StartDate $project.EndDate) \newline
+            \footnotesize{
+                \href{$project.code}{Github}
+                \vline \null\hspace{2pt}
+                \href{$project.link}{Website}
+            }
+            \null\vspace{-10pt}
+            \begin{itemize}
+            #for $el in $project.Description
+                \item $el
+            #end for
+            \end{itemize}
+        }
+    #end for
+    \end{itemize}
+}
+
+\csection{Key Courses Taken}{\small
+    \begin{itemize}[itemsep=0pt]
+    #for $coursecat in $KeyCourses
+        \item {
+            \textbf{$coursecat.Category}
+            \newline
+            $coursecat.CourseCommas
+        }
+    #end for
+    \end{itemize}
+}
+
+#if $Achievements
+\csection{Achievements}{\small
+\begin{itemize}
+    #for $achievement in $Achievements
+        \item {
+            \textbf{$achievement.Name}
+            \null\hfill
+            \newline \null\hspace{10pt}
+            $achievement.Event ($achievement.Date)
+        }
+    #end for
+    \end{itemize}
+}
+#end if
+
+#if $Certifications
+\csection{Certifications}{\small
+\begin{itemize}
+    #for $certification in $Certifications
+        \item {
+            \textbf{$certification.Certificate}
+            \null\hfill
+            \newline \null\hspace{10pt}
+            $certification.CertifiedBy
+        }
+    #end for
+    \end{itemize}
+}
+#end if
+
+#if $PORS
+\csection{Positions of Responsibility}{\small
+    \begin{itemize}
+    #for $por in $PORS
+        \item {
+                \textbf{$por.Position} \null\hspace{2pt}
+                \vline \null\hspace{2pt} $por.Organization \null\hfill ($por.StartDate – $por.EndDate)
+            } 
+    #end for
+    \end{itemize}
+}
+#end if
+
+#if $Extracurriculars
+\csection{Extra-Curriculars}{\small
+    \begin{itemize}
+    #for $ext in $Extracurriculars
+        \item {
+            \textbf{$ext.Heading} \newline
+            $ext.Description
+        } 
+    #end for
+    \end{itemize}
+}
+#end if
+
+\end{document}

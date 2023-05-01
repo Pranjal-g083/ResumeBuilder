@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import RegexValidator, MinLengthValidator
+from django.core.validators import RegexValidator, MinLengthValidator, MaxLengthValidator
 from django.contrib.auth.models import User
 # Create your models here.
 from django.core.exceptions import ValidationError
@@ -19,7 +19,7 @@ def validate_summary_length(value):
 class Resume(models.Model):
     author=models.ForeignKey(User,on_delete=models.CASCADE)
     name=models.CharField(max_length=100, blank=False, null=False)
-    type=models.IntegerChoices('type', '1 2 3 4')
+    type=models.IntegerField(default=1)
     def __str__(self):
         return self.author.username
 
@@ -78,7 +78,7 @@ class SkillCategory(models.Model):
         return self.Name
     
 class skill(models.Model):
-    Name=models.CharField(max_length=30, blank=False, null=False)
+    Name=models.CharField(max_length=30, blank=False, null=False, validators=[MaxLengthValidator(30)])
     Category=models.ForeignKey(SkillCategory,on_delete=models.CASCADE)
     def __str__(self):
         return self.Name

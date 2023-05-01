@@ -1,0 +1,347 @@
+%----------------------------------------------------------------------------------------
+%  Packages And Other Document Configurations
+%----------------------------------------------------------------------------------------
+
+\documentclass{resume} % Use the custom resume.cls style
+
+% Document margins
+\usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry}
+\usepackage{graphicx}
+
+% Color and hyperlink packages
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+% Footnote and margin adjustment packages
+\usepackage{footnote}
+\usepackage{changepage}
+\usepackage{paracol}
+
+% Fontawesome package for icons
+\usepackage{fontawesome}
+\usepackage{fancybox}
+
+% Tabularx package for custom tables
+\usepackage{tabularx}
+
+% Define navyblue color
+\definecolor{navyblue}{RGB}{0,54,123}
+
+%----------------------------------------------------------------------------------------
+%   Customizations
+%----------------------------------------------------------------------------------------
+
+% Define italicitem, bolditem, and plainitem commands
+\newcommand{\italicitem}[1]{\item{\textit{#1}}}
+\newcommand{\bolditem}[1]{\item{\textbf{#1}}}
+\newcommand{\plainitem}[1]{\item{#1}}
+
+% Define user-friendly link command for hyperlinks
+\newcommand{\link}[2]{{\href{#1}{#2}}}
+
+\newcommand{\entry}[2]{#1 & #2 \tabularnewline} % Defines an entry with two arguments: #1 for the first column and #2 for the second column
+
+%----------------------------------------------------------------------------------------
+%   Define envsection command for defining a new environment section
+%----------------------------------------------------------------------------------------
+
+\newcommand{\tableEnv}[2]{%
+  \begin{rSection}{#1} % Begin rSection with the given name
+    \begin{adjustwidth}{0.0in}{0.1in} % Set the left and right margins
+      \begin{tabularx}{\linewidth}{@{} >{\bfseries}l @{\hspace{6ex}} X @{}}
+        #2 % Print the content inside the tabularx environment
+      \end{tabularx}
+    \end{adjustwidth}
+  \end{rSection}
+}
+
+%----------------------------------------------------------------------------------------
+%   Begin document
+%----------------------------------------------------------------------------------------
+
+% Set name with navyblue color
+\name{\color{navyblue} John Doe}
+
+\begin{document}
+    \columnratio{0.25}
+    \begin{paracol}{2} % two columns
+        \begin{center}
+            \includegraphics[width=1\linewidth]{pic2.jpg}
+        \end{center}
+    \switchcolumn % switch to the Arabic column
+        \null\vspace{1em}
+
+        \begin{center}
+            \printname \\
+            \tag{Residence}\info{113, Groove Street}
+            \tag{E-mail}\info{email@gmail.com} \\
+            \tag{Telephone number}\info{+1-202-555-0100} \\
+            \info{\href{www.github.com}{Github}}
+            \infoSeparator
+            \info{\href{www.linkedin.com}{ LinkedIn}}
+            \infoSeparator
+            \info{\href{www.website.com}{ Website}}
+        \end{center}
+
+    \end{paracol}
+    
+\begin{rSection}{Professional Summary}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pharetra facilisis orci. Morbi eget justo vitae metus molestie scelerisque. Pellentesque sed magna sit amet elit rutrum vehicula. Morbi ac fermentum neque
+\end{rSection}
+%----------------------------------------------------------------------------------------
+%   Education section
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Education}
+
+    % Master's degree entry
+    \begin{rSubsectionNoBullet}
+        {\bf Name of the degree}
+        {Name of college}
+        {Field of study}
+        {February 2019 - April 2020}
+        \italicitem{CGPA: 5.0}
+    \end{rSubsectionNoBullet}
+    
+    % Bachelor's degree entry
+    \begin{rSubsectionNoBullet}
+        {\bf Name of the degree}
+        {Name of college}
+        {Field of study}
+        {February 2019 - April 2020}
+        \italicitem{CGPA: 5.0}
+    \end{rSubsectionNoBullet}
+    
+    % High School diploma entry
+    \begin{rSubsectionNoBullet}
+        {\bf Name of the degree}
+        {Name of college}
+        {Field of study}
+        {February 2019 - April 2020}
+        \italicitem{CGPA: 5.0}
+    \end{rSubsectionNoBullet}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%   Experience section
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Experience}
+
+    \begin{rSubsection}
+    {Employer Name}
+    {September 2019 - September 2021}
+    {Job Title}
+    {}
+    % Job Description
+    \item Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac odio sem.
+    \item Vivamus dignissim et urna sit amet bibendum. Proin felis orc.
+    \item Malesuada eget vehicula a, iaculis et erat.
+    \end{rSubsection}
+    
+    \begin{rSubsection}
+    {Employer Name}
+    {September 2019 - September 2021}
+    {Job Title}
+    {}
+    % Job Description
+    \item Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac odio sem.
+    \item Vivamus dignissim et urna sit amet bibendum. Proin felis orc.
+    \item Malesuada eget vehicula a, iaculis et erat.
+    \end{rSubsection}
+    
+    \begin{rSubsection}
+    {Employer Name}
+    {September 2019 - September 2021}
+    {Job Title}
+    {}
+    % Job Description
+    \item Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac odio sem.
+    \item Vivamus dignissim et urna sit amet bibendum. Proin felis orc.
+    \item Malesuada eget vehicula a, iaculis et erat.
+    \end{rSubsection}
+    
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+% Projects section
+%----------------------------------------------------------------------------------------
+\newpage
+\begin{rSection}{Projects}
+
+    \begin{rSubsection}
+    {Project title}
+    {September 2019 - September 2021}
+    {\null\hspace{2pt} \href{www.github.com}{\faGithub} \vline \hspace{2pt} \href{www.website.com}{\faGlobe}}
+    {}
+    % Job Description
+    \item Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac odio sem.
+    \item Vivamus dignissim et urna sit amet bibendum. Proin felis orc.
+    \item Malesuada eget vehicula a, iaculis et erat.
+    \end{rSubsection}
+
+
+    \begin{rSubsection}
+    {Project title}
+    {September 2019 - September 2021}
+    {\null\hspace{2pt} \href{www.github.com}{\faGithub} \vline \hspace{2pt} \href{www.website.com}{\faGlobe}}
+    {}
+    % Job Description
+    \item Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac odio sem.
+    \item Vivamus dignissim et urna sit amet bibendum. Proin felis orc.
+    \item Malesuada eget vehicula a, iaculis et erat.
+    \end{rSubsection}
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+% Technical skills section
+%----------------------------------------------------------------------------------------
+
+\tableEnv{Technical skills}{
+    \entry{Programming Languages/Tools}
+    {   
+        \raggedright
+        \ovalbox{C}
+        \ovalbox{C++}
+        \ovalbox{Java}
+        \ovalbox{Javascript}
+        \ovalbox{Prolog}
+        \ovalbox{\LaTeX}
+        \ovalbox{PigeonScript}
+    }
+    \entry{}{\vspace{1em}}
+    
+    \entry{Programming Languages/Tools}
+    {   
+        \raggedright
+        \ovalbox{C}
+        \ovalbox{C++}
+        \ovalbox{Java}
+        \ovalbox{Javascript}
+        \ovalbox{Prolog}
+        \ovalbox{\LaTeX}
+        \ovalbox{PigeonScript}
+    }
+    \entry{}{\vspace{1em}}
+}
+
+%----------------------------------------------------------------------------------------
+% Achievements section
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Achievements}
+    \begin{rSubsectionNoBullet}
+    {Achievement Name}
+    {11th September 2019}
+    {100 marks}
+    {\href{www.proof.com}{Link}}\item \vspace{-1.5em}
+    \end{rSubsectionNoBullet}
+
+    \begin{rSubsectionNoBullet}
+    {Achievement Name}
+    {11th September 2019}
+    {100 marks}
+    {\href{www.proof.com}{Link}}\item \vspace{-1.5em}
+    \end{rSubsectionNoBullet}
+
+    \begin{rSubsectionNoBullet}
+    {Achievement Name}
+    {11th September 2019}
+    {100 marks}
+    {\href{www.proof.com}{Link}}\item
+    \end{rSubsectionNoBullet}
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+% Certifications section
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Certifications}
+    \begin{rSubsectionNoBullet}
+    {Certification Name \vline \hspace{2pt} Certified by}
+    {11th September 2019}
+    {97.5\%}
+    {\href{www.proof.com}{Link to certificate}}\item \vspace{-1.5em}
+    \end{rSubsectionNoBullet}
+
+    \begin{rSubsectionNoBullet}
+    {Certification Name \vline \hspace{2pt} Certified by}
+    {11th September 2019}
+    {97.5\%}
+    {\href{www.proof.com}{Link to certificate}}\item \vspace{-1.5em}
+    \end{rSubsectionNoBullet}
+
+    \begin{rSubsectionNoBullet}
+    {Certification Name \vline \hspace{2pt} Certified by}
+    {11th September 2019}
+    {97.5\%}
+    {\href{www.proof.com}{Link to certificate}}\item
+    
+    \end{rSubsectionNoBullet}
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+% Key courses taken section
+%----------------------------------------------------------------------------------------
+\tableEnv{Key Courses Taken}{
+    \entry{Course Category 1}
+    {   
+        Course, Extremely very Long Course, Course, Course, Long Course, Very Long Course, Extremely Long Course, 
+    }
+    \entry{}{\vspace{1em}}
+    
+    \entry{Course Category 2}
+    {   
+        Extremely very Long Course, Course, Course, Long Course, Very Long Course, Extremely Long Course, Course
+    }
+    \entry{}{\vspace{1em}}
+
+}
+
+%----------------------------------------------------------------------------------------
+% Positions of Responsibility section
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Positions of Responsibility}
+    \begin{rSubsectionNoBullet}
+    {Institution \#1}
+    {September 2019 - September 2021}
+    {Designation \#1}
+    {}\item \vspace{-1em}
+    \end{rSubsectionNoBullet}
+
+    \begin{rSubsectionNoBullet}
+    {Institution \#2}
+    {September 2019 - September 2021}
+    {Designation \#2}
+    {}\item \vspace{-1em}
+    \end{rSubsectionNoBullet}
+    
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+% Extracurricular activities section
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Extracurricular activities}
+
+\begin{rSubsectionNoBullet}
+    {Extracurricular Activity \#1}
+    {}
+    {}
+    {}
+    \plainitem{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac odio sem. Vivamus dignissim et urna sit amet bibendum. Proin felis orci, malesuada eget vehicula a, iaculis et erat}
+\end{rSubsectionNoBullet}
+
+\begin{rSubsectionNoBullet}
+    {Extracurricular Activity \#2}
+    {}
+    {}
+    {}
+    \plainitem{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac odio sem. Vivamus dignissim et urna sit amet bibendum. Proin felis orci, malesuada eget vehicula a, iaculis et erat}
+\end{rSubsectionNoBullet}
+
+\end{rSection}
+
+\end{document}

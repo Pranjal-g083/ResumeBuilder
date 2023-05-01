@@ -18,4 +18,5 @@ urlpatterns = [
     path('Certification/<int:pk>', CertificationView, name='certifications'),
     path('Download/<int:pk>', DownloadView, name='download'),
     path('Resume/<int:pk>/', resumeView, name='resume'),
+    path('works/', works, name='works'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

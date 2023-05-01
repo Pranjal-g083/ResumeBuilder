@@ -1,0 +1,245 @@
+%----------------------------------------------------------------------------------------
+%  Packages And Other Document Configurations
+%----------------------------------------------------------------------------------------
+
+\documentclass{resume} % Use the custom resume.cls style
+
+% Document margins
+\usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry}
+\usepackage{graphicx}
+
+% Color and hyperlink packages
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+% Footnote and margin adjustment packages
+\usepackage{footnote}
+\usepackage{changepage}
+\usepackage{paracol}
+
+% Fontawesome package for icons
+\usepackage{fontawesome}
+\usepackage{fancybox}
+
+% Tabularx package for custom tables
+\usepackage{tabularx}
+
+% Define navyblue color
+\definecolor{navyblue}{RGB}{0,54,123}
+
+%----------------------------------------------------------------------------------------
+%   Customizations
+%----------------------------------------------------------------------------------------
+
+% Define italicitem, bolditem, and plainitem commands
+\newcommand{\italicitem}[1]{\item{\textit{#1}}}
+\newcommand{\bolditem}[1]{\item{\textbf{#1}}}
+\newcommand{\plainitem}[1]{\item{#1}}
+
+% Define user-friendly link command for hyperlinks
+\newcommand{\link}[2]{{\href{#1}{#2}}}
+
+\newcommand{\entry}[2]{#1 & #2 \tabularnewline} % Defines an entry with two arguments: #1 for the first column and #2 for the second column
+
+%----------------------------------------------------------------------------------------
+%   Define envsection command for defining a new environment section
+%----------------------------------------------------------------------------------------
+
+\newcommand{\tableEnv}[2]{%
+  \begin{rSection}{#1} % Begin rSection with the given name
+    \begin{adjustwidth}{0.0in}{0.1in} % Set the left and right margins
+      \begin{tabularx}{\linewidth}{@{} >{\bfseries}l @{\hspace{6ex}} X @{}}
+        #2 % Print the content inside the tabularx environment
+      \end{tabularx}
+    \end{adjustwidth}
+  \end{rSection}
+}
+
+%----------------------------------------------------------------------------------------
+%   Begin document
+%----------------------------------------------------------------------------------------
+
+% Set name with navyblue color
+\name{\color{navyblue} $Personal_Info.Name}
+
+\begin{document}
+    \columnratio{0.25}
+    \begin{paracol}{2}
+        \begin{center}
+            \includegraphics[width=1\linewidth, height=1\linewidth]{$Personal_Info.Profile_Pic}
+        \end{center}
+    \switchcolumn
+        \null\vspace{1em}
+        \begin{center}
+            \printname \\
+            \tag{Address}\info{113, Groove Street}
+            \tag{E-mail}\info{$Personal_Info.Email} \\
+            \tag{Phone}\info{$Personal_Info.Phone} \\
+            #if $Personal_Info.Github
+            \info{\href{$Personal_Info.Github}{Github}}
+            #end if
+            #if $Personal_Info.Linkedin
+            \infoSeparator
+            \info{\href{$Personal_Info.Linkedin}{ LinkedIn}}
+            #end if
+            #if $Personal_Info.Website
+            \infoSeparator
+            \info{\href{$Personal_Info.Website}{ Website}}
+            #end if
+        \end{center}
+
+    \end{paracol}
+    
+\begin{rSection}{Professional Summary}
+    $ProfessionalSummary
+\end{rSection}
+%----------------------------------------------------------------------------------------
+%   Education section
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Education}
+    #for $education in $Education
+    \begin{rSubsectionNoBullet}
+        {\bf $education.Degree}
+        {$education.Institute}
+        {$education.Field}
+        {$education.startYear - $education.EndYear}
+        \italicitem{CGPA: $education.CGPA}
+    \end{rSubsectionNoBullet}
+    #end for
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%   Experience section
+%----------------------------------------------------------------------------------------
+
+#if $Experience
+\begin{rSection}{Experience}
+    #for $exp in $Experience
+    \begin{rSubsection}
+    {$exp.Company}
+    {$exp.StartDate - $exp.EndDate}
+    {$exp.Position}
+    {}
+    #for $work in $exp.WorkDoneSplit
+    \item $work
+    #end for
+    \end{rSubsection}
+    #end for
+\end{rSection}
+#end if
+
+%----------------------------------------------------------------------------------------
+% Projects section
+%----------------------------------------------------------------------------------------
+\begin{rSection}{Projects}
+    #for $proj in $Projects
+    \begin{rSubsection}
+    {$proj.ProjectName}
+    {$proj.StartDate - $proj.EndDate}
+    {\null\hspace{2pt} \href{$proj.code}{\faGithub} \vline \hspace{2pt} \href{$proj.link}{\faGlobe}}
+    {}
+    #for $el in $proj.Description
+    \item $el
+    #end for
+    \end{rSubsection}
+    #end for
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+% Technical skills section
+%----------------------------------------------------------------------------------------
+
+\tableEnv{Skills}{
+    #for $skillcat in $Skills
+    \entry{$skillcat.SkillName}
+    {   
+        \raggedright
+        #for $skill in $skillcat.SkillSet
+        \ovalbox{$skill}
+        #end for
+    }
+    \entry{}{\vspace{1em}}
+    #end for
+}
+
+%----------------------------------------------------------------------------------------
+% Achievements section
+%----------------------------------------------------------------------------------------
+
+#if $Achievements
+\begin{rSection}{Achievements}
+    #for $ach in $Achievements
+    \begin{rSubsectionNoBullet}
+    {$ach.Event}
+    {$ach.Date}
+    {$ach.Name}
+    {}\item \vspace{-1.5em} 
+    \end{rSubsectionNoBullet}
+    #end for
+\end{rSection}
+#end if
+
+%----------------------------------------------------------------------------------------
+% Certifications section
+%----------------------------------------------------------------------------------------
+#if $Certifications
+\begin{rSection}{Certifications}
+    #for $cert in $Certifications
+    \begin{rSubsectionNoBullet}
+    {$cert.Certificate \vline \hspace{2pt} $cert.CertifiedBy}
+    {}
+    {}
+    {}\item \vspace{-1.5em}
+    \end{rSubsectionNoBullet}
+    #end for
+\end{rSection}
+#end if
+
+%----------------------------------------------------------------------------------------
+% Key courses taken section
+%----------------------------------------------------------------------------------------
+\tableEnv{Key Courses Taken}{
+    #for $coursecat in $KeyCourses
+    \entry{$coursecat.Category}
+    {   
+        $coursecat.CourseCommas
+    }
+    \entry{}{\vspace{1em}}
+    #end for
+}
+
+%----------------------------------------------------------------------------------------
+% Positions of Responsibility section
+%----------------------------------------------------------------------------------------
+#if $PORS
+\begin{rSection}{Positions of Responsibility}
+    #for $por in $PORS
+    \begin{rSubsectionNoBullet}
+    {$por.Organization}
+    {$por.StartDate - $por.EndDate}
+    {$por.Position}
+    {}\item \vspace{-1em}
+    \end{rSubsectionNoBullet}
+    #end for
+\end{rSection}
+#end if
+%----------------------------------------------------------------------------------------
+% Extracurricular activities section
+%----------------------------------------------------------------------------------------
+
+#if $Extracurriculars
+\begin{rSection}{Extracurricular activities}
+    #for $ext in $Extracurriculars
+    \begin{rSubsectionNoBullet}
+        {$ext.Heading}
+        {}
+        {}
+        {}
+        \plainitem{$ext.Description}
+    \end{rSubsectionNoBullet}
+    #end for
+\end{rSection}
+#end if
+
+\end{document}

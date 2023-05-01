@@ -1,0 +1,232 @@
+\PassOptionsToPackage{dvipsnames}{xcolor}
+
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+
+% Change the page layout if you need to
+\geometry{left=1.2cm,right=1.2cm,top=1cm,bottom=1cm,columnsep=0.75cm}
+
+% The paracol package lets you typeset columns of text in parallel
+\usepackage{paracol}
+
+% Change the font if you want to, depending on whether
+% you're using pdflatex or xelatex/lualatex
+\ifxetexorluatex
+  % If using xelatex or lualatex:
+  \setmainfont{Roboto Slab}
+  \setsansfont{Lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\else
+  % If using pdflatex:
+  \usepackage[rm]{roboto}
+  \usepackage[defaultsans]{lato}
+  % \usepackage{sourcesanspro}
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
+
+% Fork (before v1.6.5a): Change the color codes to test your personal variant on any mode
+\ifdarkmode%
+  \definecolor{PrimaryColor}{HTML}{C69749}
+  \definecolor{SecondaryColor}{HTML}{D49B54}
+  \definecolor{ThirdColor}{HTML}{1877E8}
+  \definecolor{BodyColor}{HTML}{ABABAB}
+  \definecolor{EmphasisColor}{HTML}{ABABAB}
+  \definecolor{BackgroundColor}{HTML}{191919}
+\else%
+  \definecolor{PrimaryColor}{HTML}{001F5A}
+  \definecolor{SecondaryColor}{HTML}{0039AC}
+  \definecolor{ThirdColor}{HTML}{F3890B}
+  \definecolor{BodyColor}{HTML}{666666}
+  \definecolor{EmphasisColor}{HTML}{2E2E2E}
+  \definecolor{BackgroundColor}{HTML}{E2E2E2}
+\fi%
+
+\colorlet{name}{PrimaryColor}
+\colorlet{tagline}{SecondaryColor}
+\colorlet{heading}{PrimaryColor}
+\colorlet{headingrule}{ThirdColor}
+\colorlet{subheading}{SecondaryColor}
+\colorlet{accent}{SecondaryColor}
+\colorlet{emphasis}{EmphasisColor}
+\colorlet{body}{BodyColor}
+\pagecolor{BackgroundColor}
+
+% Change some fonts, if necessary
+\renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+\renewcommand{\personalinfofont}{\small\bfseries}
+\renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+\renewcommand{\cvsubsectionfont}{\large\bfseries}
+
+% Change the bullets for itemize and rating marker
+% for \cvskill if you want to
+\renewcommand{\itemmarker}{\small\textbullet}
+\renewcommand{\ratingmarker}{\faCircle}
+
+%% sample.bib contains your publications
+%% \addbibresource{sample.bib}
+
+\begin{document}
+    
+    \name{$Personal_Info.Name}
+    % \tagline{Test Developer}
+    %% You can add multiple photos on the left or right
+    \photoL{4cm}{$Personal_Info.Profile_Pic}
+
+    \personalinfo{
+        \phone{$Personal_Info.Phone}
+        \email{$Personal_Info.Email}
+        #if $Personal_Info.Linkedin
+        \linkedin{$Personal_Info.Linkedin}
+        #end if
+        #if $Personal_Info.Github
+        \github{$Personal_Info.Github}
+        #end if
+        #if $Personal_Info.Website
+        \homepage{$Personal_Info.Website}
+        #end if
+        \location{$Personal_Info.Address}
+    }
+    
+    \makecvheader
+
+    
+    %% Set the left/right column width ratio to 6:4.
+    \columnratio{0.3}
+
+    % Start a 2-column paracol. Both the left and right columns will automatically
+    % break across pages if things get too long.
+    \begin{paracol}{2}
+    
+         % ----- SKILLS -----
+        \cvsection{Skills}
+            #for $skillcat in $Skills
+            \cvlang{$skillcat.SkillName}{}
+            \newline \medskip
+            #for $skill in $skillcat.SkillSet
+            \cvtag{$skill}
+            #end for
+            \newline
+            \divider
+            #end for
+        % ----- SKILLS -----
+
+        % ----- KEY COURSES -----
+        \cvsection{Key Courses}
+            #for $coursecat in $KeyCourses
+            \cvlang{$coursecat.Category}{}
+            \medskip
+            \begin{itemize}
+                #for $course in $coursecat.Courses
+                \item $course
+                #end for
+            \end{itemize}
+            \divider
+            #end for
+        % ----- KEY COURSES -----
+
+        % ----- ACHIEVEMENTS -----
+        #if $Achievements
+        \cvsection{Achievements}
+            \begin{itemize}
+                #for $achievement in $Achievements
+                \item {
+                    \textbf{$achievement.Name} \newline
+                    $achievement.Event ($achievement.Date)
+                }
+                #end for
+            \end{itemize}
+        #end if
+        % ----- ACHIEVEMENTS -----
+
+        % ----- EXTRACURRICULARS -----
+        #if $Extracurriculars
+        \cvsection{\Large Extracurriculars}
+            #for $ext in $Extracurriculars
+            \cvlang{$ext.Heading}{}
+            \par
+            $ext.Description
+            \smallskip
+            #end for
+        #end if
+        % ----- EXTRACURRICULARS -----
+            
+        \newpage
+
+        \switchcolumn
+        
+        % ----- PROFESSIONAL SUMMARY -----
+        \cvsection{Professional summary}
+            \begin{quote}
+                $ProfessionalSummary
+            \end{quote}
+        % ----- PROFESSIONAL SUMMARY -----
+
+        % ----- EXPERIENCE -----
+        #if $Experience
+        \cvsection{Experience}
+            #for $experience in $Experience
+                \cvevent{$experience.Position }
+                    {| $experience.Company}
+                    {$experience.StartDate -- $experience.EndDate}{}
+                \begin{itemize}
+                    #for $desc in $experience.WorkDoneSplit
+                        \item $desc
+                    #end for
+                \end{itemize}
+                \divider
+            #end for
+        #end if
+        % ----- EXPERIENCE -----
+        
+        % ----- EDUCATION -----
+        \cvsection{Education}
+            #for $education in $Education
+                \cvevent{$education.Degree, $education.Field}
+                    {| $education.Institute}
+                    {$education.startYear -- $education.EndYear}{}
+                \begin{itemize}
+                    \item GPA: $education.CGPA
+                \end{itemize}
+                \divider
+            #end for
+        % ----- EDUCATION -----
+        
+        % ----- PROJECTS -----
+        \cvsection{Projects}
+            #for $project in $Projects
+                \cvevent{$project.ProjectName }
+                    {\cvreference{| \faGithub}{$project.code}\cvreference{| \faGlobe}{$project.link}}
+                    {$project.StartDate -- $project.EndDate}{}
+                \begin{itemize}
+                    #for $desc in $project.Description
+                        \item $desc
+                    #end for
+                \end{itemize}
+                \divider
+            #end for
+        % ----- PROJECTS -----
+        
+        % ----- CERTIFICATIONS -----
+        #if $Certifications
+        \begin{samepage}
+            \cvsection{Certifications}
+            \begin{itemize}
+                #for $certificate in $Certifications
+                    \item \cvevent{\certification{$certificate.Certificate}}
+                            {| $certificate.CertifiedBy }{}{}
+                #end for
+            \end{itemize}
+        \end{samepage}
+        #end if
+        % ----- CERTIFICATIONS -----
+
+        % ----- PORS -----
+        #if $PORS
+        \cvsection{Positions of responsibility}
+            #for $por in $PORS
+            \cvevent{$por.Position }{| $por.Organization}{$por.StartDate -- $por.EndDate}{}
+            \divider
+            #end for
+        #end if
+        % ----- PORS -----
+    \end{paracol}
+\end{document}

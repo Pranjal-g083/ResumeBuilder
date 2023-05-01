@@ -1,0 +1,233 @@
+\PassOptionsToPackage{dvipsnames}{xcolor}
+
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+
+% Change the page layout if you need to
+\geometry{left=1.2cm,right=1.2cm,top=1cm,bottom=1cm,columnsep=0.75cm}
+
+% The paracol package lets you typeset columns of text in parallel
+\usepackage{paracol}
+
+% Change the font if you want to, depending on whether
+% you're using pdflatex or xelatex/lualatex
+\ifxetexorluatex
+  % If using xelatex or lualatex:
+  \setmainfont{Roboto Slab}
+  \setsansfont{Lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\else
+  % If using pdflatex:
+  \usepackage[rm]{roboto}
+  \usepackage[defaultsans]{lato}
+  % \usepackage{sourcesanspro}
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
+
+% Fork (before v1.6.5a): Change the color codes to test your personal variant on any mode
+\ifdarkmode%
+  \definecolor{PrimaryColor}{HTML}{C69749}
+  \definecolor{SecondaryColor}{HTML}{D49B54}
+  \definecolor{ThirdColor}{HTML}{1877E8}
+  \definecolor{BodyColor}{HTML}{ABABAB}
+  \definecolor{EmphasisColor}{HTML}{ABABAB}
+  \definecolor{BackgroundColor}{HTML}{191919}
+\else%
+  \definecolor{PrimaryColor}{HTML}{001F5A}
+  \definecolor{SecondaryColor}{HTML}{0039AC}
+  \definecolor{ThirdColor}{HTML}{F3890B}
+  \definecolor{BodyColor}{HTML}{666666}
+  \definecolor{EmphasisColor}{HTML}{2E2E2E}
+  \definecolor{BackgroundColor}{HTML}{E2E2E2}
+\fi%
+
+\colorlet{name}{PrimaryColor}
+\colorlet{tagline}{SecondaryColor}
+\colorlet{heading}{PrimaryColor}
+\colorlet{headingrule}{ThirdColor}
+\colorlet{subheading}{SecondaryColor}
+\colorlet{accent}{SecondaryColor}
+\colorlet{emphasis}{EmphasisColor}
+\colorlet{body}{BodyColor}
+\pagecolor{BackgroundColor}
+
+% Change some fonts, if necessary
+\renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+\renewcommand{\personalinfofont}{\small\bfseries}
+\renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+\renewcommand{\cvsubsectionfont}{\large\bfseries}
+
+% Change the bullets for itemize and rating marker
+% for \cvskill if you want to
+\renewcommand{\itemmarker}{{\small\textbullet}}
+\renewcommand{\ratingmarker}{\faCircle}
+
+%% sample.bib contains your publications
+%% \addbibresource{sample.bib}
+
+\begin{document}
+    \name{John Doe}
+    % \tagline{Test Developer}
+    %% You can add multiple photos on the left or right
+    \photoL{4cm}{john-doe}
+
+    \personalinfo{
+        \phone{+01-2345-678901}
+        \location{City, Country}
+        \email{john_doe@email.com}
+
+        \linkedin{linkedinUser}
+        \github{githubUser}
+        \homepage{portfolio.site}
+
+    }
+    
+    \makecvheader
+
+    
+    %% Set the left/right column width ratio to 6:4.
+    \columnratio{0.3}
+
+    % Start a 2-column paracol. Both the left and right columns will automatically
+    % break across pages if things get too long.
+    \begin{paracol}{2}
+    
+         % ----- SKILLS -----
+        \cvsection{Skills}
+            \cvlang{Category 1}{}
+            \newline \medskip
+            \cvtag{Skill 1}
+            \cvtag{Skill 2}
+            \cvtag{Skill 3 asdasd}
+            \cvtag{blah blah Skill 3}
+            \newline
+            
+            \divider
+
+            \cvlang{Category 2}{}
+            \newline \medskip
+            \cvtag{Skill 1}
+            \cvtag{Skill 2}
+            \cvtag{Skill 3 asdasd}
+            \cvtag{blah blah Skill 3}
+            \newline
+        % ----- SKILLS -----
+
+        % ----- KEY COURSES -----
+        \cvsection{Key Courses}
+            \cvlang{Category 1}{}
+            \medskip
+            \begin{itemize}
+                \item First course
+                \item Second course
+                \item Third course
+            \end{itemize}
+            
+            \divider
+            
+            \cvlang{Category 2}{}
+            \medskip
+            \begin{itemize}
+                \item First course
+                \item Second course
+                \item Third course
+            \end{itemize}
+        % ----- KEY COURSES -----
+
+        % ----- ACHIEVEMENTS -----
+        \cvsection{Achievements}
+            \begin{itemize}
+                \item First Achievement
+                \item Second Achievement
+                \item Third Achievement
+            \end{itemize}
+        % ----- ACHIEVEMENTS -----
+
+        % ----- EXTRACURRICULARS -----
+        \cvsection{\Large Extracurriculars}
+            \cvlang{Extracurricular 1}{}
+            \smallskip
+            \par
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            
+            \divider
+            
+            \cvlang{Extracurricular 2}{}
+            \smallskip
+            \par
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        % ----- EXTRACURRICULARS -----
+            
+        \newpage
+
+        \switchcolumn
+        
+        % ----- PROFESSIONAL SUMMARY -----
+        \cvsection{Professional summary}
+            \begin{quote}
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            \end{quote}
+        % ----- PROFESSIONAL SUMMARY -----
+
+        % ----- EXPERIENCE -----
+        \cvsection{Experience}
+            \cvevent{Charge }{| Company}{Mm YYYY -- Mm YYYY}{}
+
+            \divider
+            
+            \cvevent{Charge }{| Company}{Mm YYYY -- Mm YYYY}{}
+
+        % ----- EXPERIENCE -----
+        
+        % ----- EDUCATION -----
+        \cvsection{Education}
+            \cvevent{Degree, Field of study }{| Institution}{Mm YYYY -- Mm YYYY}{}
+            \begin{itemize}
+                \item GPA: 1.23
+            \end{itemize}
+            \divider
+            
+            \cvevent{Degree, Field of study }{| Institution}{Mm YYYY -- Mm YYYY}{}
+            \begin{itemize}
+                \item GPA: 1.23
+            \end{itemize}
+            \divider
+        % ----- EDUCATION -----
+        
+        % ----- PROJECTS -----
+        \cvsection{Projects}
+            \cvevent{Project 1 }{\cvreference{| \faGithub}{https://github.com/user/repo}\cvreference{| \faGlobe}{https://repo-demo.com/}}{Mm YYYY -- Mm YYYY}{}
+            \begin{itemize}
+                \item Item 1
+                \item Item 2
+            \end{itemize}
+            \divider
+            
+            \cvevent{Project 1 }{\cvreference{| \faGitlab}{https://gitlab.com/user/repo}\cvreference{| \faGlobe}{https://repo-demo.com/}}{Mm YYYY -- Mm YYYY}{}
+            \begin{itemize}
+                \item Item 1
+                \item Item 2
+            \end{itemize}
+        % ----- PROJECTS -----
+        
+        % ----- CERTIFICATIONS -----
+        \begin{samepage}
+            \cvsection{Certifications}
+            \begin{itemize}
+                \item \cvevent{\certification{Certification\ 1} }{| Company}{}{}
+                \item \cvevent{\certification{Certification\ 2} }{| Company}{}{}
+                \item \cvevent{\certification{Certification\ 3} }{| Company}{}{}
+            \end{itemize}
+        \end{samepage}
+        % ----- CERTIFICATIONS -----
+
+        % ----- PORS -----
+        \cvsection{Positions of responsibility}
+            \cvevent{POR }{| Organization}{Mm YYYY -- Mm YYYY}{}
+
+            \divider
+            
+            \cvevent{POR }{| Organization}{Mm YYYY -- Mm YYYY}{}
+
+        % ----- PORS -----
+    \end{paracol}
+\end{document}

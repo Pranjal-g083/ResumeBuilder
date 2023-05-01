@@ -21,7 +21,7 @@
                     <li class="nav-item"><a class="nav-link active" href="{% url 'home' %}" style="margin-left: 20px;margin-right: 20px;">Home</a></li>
                     
                     {%if user.is_authenticated%}
-                    <li class="nav-item"><a class="nav-link" href="#" style="margin-left: 20px;margin-right: 20px;">My Work</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'works' %}" style="margin-left: 20px;margin-right: 20px;">My Work</a></li>
                     <li class="nav-item"></li>
                     {%endif%}
                 </ul>
