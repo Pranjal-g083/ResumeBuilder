@@ -13,6 +13,7 @@
     - [Overall Flow](#overall-flow)
     - [Login Flow](#login-flow)
     - [Resume Form](#resume-form)
+    - [Generate Resume](#generate-resume)
   - [Demo](#demo)
     - [Home Page](#home-page)
     - [Login](#login)
